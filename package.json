@@ -10,9 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-icons": "^4.10.1",
+=======
+    "react-router-dom": "^6.14.2",
+>>>>>>> 4544afb0215ad6c89b42f8224c5a53237779e19f
     "sass": "^1.63.6"
   },
   "devDependencies": {

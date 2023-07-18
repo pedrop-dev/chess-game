@@ -1,0 +1,66 @@
+@use './var';
+.footer_component {
+    height: 300px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: absolute;
+    top: 100%;
+    padding: 40px 0px 0px 17%;
+    background-color: var.$black100;
+    .footer_section {
+        h2 {
+            margin-bottom: 10px;
+            color: var.$white100;
+        }
+        ul {
+            li {
+                margin-bottom: 5px;
+                list-style: none;
+                color: var.$dm-w70;
+                a {
+                    text-decoration: none;
+                    color: var.$dm-w70;
+                    transition: .2s;
+                }
+                a:hover {
+                    //text-decoration: underline;
+                    color: var.$dm-primary;
+                }
+            }
+        }
+        .section_logo_wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .pawn_icon {
+                font-size: 2em;
+                margin-bottom: 20px;
+                color: var.$wm-primary;
+            }
+        }
+        .section_icons_wrapper {
+            display: flex;
+            align-items: center;
+            .footer_icons {
+                color: var.$dm-w70;
+                transition: .3s;
+            }
+            .footer_icons:hover {
+                color: var.$dm-primary;
+            }
+            .github_icon {
+                font-size: 2.1em;
+                margin-right: 10px;
+            }
+            .linkedin_icon {
+                font-size: 2em;
+                margin-right: 10px;
+            }
+            .discord_icon {
+                font-size: 2.6em;
+            }
+        }
+      
+    }
+}

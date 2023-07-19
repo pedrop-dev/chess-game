@@ -2,6 +2,7 @@ import ChessBoard from "../../components/ChessBoard"
 import Piece from "../../components/Piece";
 import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { useState, useEffect } from "react"
+import { Chess } from 'chess.js'
 
 function chessBoardToFEN(chessBoard) {
   const activeColor = 'white';
@@ -61,14 +62,27 @@ function chessBoardToFEN(chessBoard) {
   return fen;
 }
 
-export default function GameAnalysis() {
+export default function GameAnalysis(props) {
   const [squareChildren, setSquareChildren] = useState(null);
   const [engineEval, setEngineEval] = useState(false);
   const [stockfish, setStockfish] = useState(null);
+  const [chess, setChess] = useState(null);
+  const [isGame, setIsGame] = useState(false);
 
   const mouseSensor = useSensor(MouseSensor); // Initialize mouse sensor
   const touchSensor = useSensor(TouchSensor); // Initialize touch sensor
   const sensors = useSensors(mouseSensor, touchSensor)
+
+
+  useEffect(() => {
+    if (props.fen !== null && props.fen !== undefined) {
+      setChess(new Chess(props.fen))
+    }
+
+    else {
+      setChess(new Chess())
+    }
+  }, [])
 
   useEffect(() => {
     var wasmSupported = typeof WebAssembly === 'object' && WebAssembly.validate(Uint8Array.of(0x0, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00));
@@ -87,7 +101,7 @@ export default function GameAnalysis() {
       }
 
       else if (mate) {
-        setEngineEval("Mate in " + parseInt(mate));
+        setEngineEval("Mate in " + parseInt(mate[1]));
       }
     });
 
@@ -106,6 +120,13 @@ export default function GameAnalysis() {
     let sqChildrenCopy = JSON.parse(JSON.stringify(squareChildren));
 
     sqChildrenCopy[row][col] = e.active.data.current?.type;
+
+    if (isGame) {
+      sqChildrenCopy[e.active.data.current?.position[0]][e.active.data.current?.position[1]] = null;
+      chess.move({from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]), 
+                  to: String.fromCharCode(col + 97) + String(8 - row) })
+    }
+
     setSquareChildren(sqChildrenCopy);
   }
 
@@ -113,6 +134,32 @@ export default function GameAnalysis() {
     const fen = chessBoardToFEN(squareChildren);
     stockfish.postMessage("position fen " + fen);
     stockfish.postMessage("go depth 15");
+  }
+
+  const handleAnalyzeGame = () => {
+    chess.load('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
+    const chessLibBoard = chess.board();
+    console.log(chess.board())
+    let squareChildrenCopy = JSON.parse(JSON.stringify(squareChildren));
+
+    for (let i = 0; i < 8; ++i) {
+      for (let j = 0; j < 8; ++j) {
+        let piece = chessLibBoard[i][j]?.type;
+        if (piece && chessLibBoard[i][j].color === "w") {
+          piece = piece.toUpperCase()
+        }
+      
+        squareChildrenCopy[i][j] = piece;
+        console.log(chessLibBoard[i][j]);
+
+      }
+    }
+    setSquareChildren(squareChildrenCopy);
+    setIsGame(true);
+  }
+
+  const handleGameFromHere = () => {
+    chess.load(chessBoardToFEN(squareChildren));
   }
 
   return (
@@ -136,6 +183,14 @@ export default function GameAnalysis() {
       </button>
 
       {engineEval && engineEval}
+
+      <button onClick={handleAnalyzeGame}>
+        Analyze Game
+      </button>
+
+      <button onClick={handleGameFromHere}>
+        Game From Here
+      </button>
 
     </DndContext>
   )

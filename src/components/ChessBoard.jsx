@@ -40,6 +40,8 @@ export default function ChessBoard(props) {
               width={props.width}
               color={sqColor}
               id={8*i + (j)}
+              rank={i}
+              file={j}
               child={squareChildren[i][j++]}/>)} 
 
         </div>

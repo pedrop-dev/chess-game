@@ -9,7 +9,7 @@ export default function Square(props) {
 
   return (
     <div ref={setNodeRef} style={{height: props.height, width: props.width, backgroundColor: color}}>
-      {props.child == null ? "" : <Piece type={props.child}/>}
+      {props.child == null ? "" : <Piece type={props.child} id={props.id} position={[props.rank, props.file]}/>}
     </div>
   )
 }

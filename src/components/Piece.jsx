@@ -6,7 +6,8 @@ export default function Piece(props) {
     id: "draggable-" + props.id,
     data: { 
       index: props.id,
-      type: props.type
+      type: props.type,
+      position: props.position
     }
   });
 

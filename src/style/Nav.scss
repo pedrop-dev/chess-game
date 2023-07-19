@@ -1,0 +1,118 @@
+@use './var';
+
+.header_nav_horizontal {
+    height: 60px;
+    display: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
+    background-color: var.$white100;
+    .header_section_nav {
+        display: flex;
+        align-items: center;
+        .menuh_icon {
+            font-size: 2em;
+            margin: 0 10px 10px 0px;
+            color: var.$black100;
+        }
+    }
+
+    .header_aside_account {
+        .account_signup {
+            height: 30px;
+            width: 75px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var.$wm-b50;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: var.$wm-b10;
+            box-shadow: var.$boxs;
+
+            margin-right: 10px;
+        }
+        .account_signin {
+            height: 30px;
+            width: 75px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var.$white100;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: var.$wm-primary;
+            box-shadow: var.$boxs;
+        }
+    }
+}
+
+.header_nav_vertical {
+    height: 100vh;
+    width: 20%;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    padding: 10px 0px 0px 10px;
+    background-color: var.$wm-b10;
+    .nav_vertical_ul {
+        li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 35px 0px 20px 0px;
+            list-style: none;
+            cursor: pointer;
+            .vertical_icon {
+                font-size: 1.3em;
+                color: var.$wm-b50;
+                margin-right: 10px;
+            }
+            p {
+                font-size: 16px;
+                font-weight: 750;
+                color: var.$wm-b50;
+            }
+        }
+        
+    }
+    .header_aside_account_vertical {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+        .account_signup {
+            height: 30px;
+            width: 90%;
+            font-size: 16px;
+            font-weight: bold;
+            color: var.$wm-b50;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: var.$wm-b10;
+            box-shadow: var.$boxs;
+
+            margin-right: 10px;
+        }
+        .account_signin {
+            height: 30px;
+            width: 90%;
+            font-size: 16px;
+            font-weight: bold;
+            color: var.$white100;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: var.$wm-primary;
+            box-shadow: var.$boxs;
+        }
+    }
+}

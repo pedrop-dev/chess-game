@@ -1,0 +1,12 @@
+@use './var';
+
+.logo_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .pawn_icon {
+        font-size: 2em;
+        margin-bottom: 15px;
+        color: var.$wm-primary;
+    }
+}

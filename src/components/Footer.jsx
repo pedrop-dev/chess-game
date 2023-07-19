@@ -3,22 +3,22 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import '../style/Footer.scss'
 import '../style/FooterResponsivity.scss'
+import Logo from './Logo'
 
 //Icons
 import { AiFillGithub } from "react-icons/ai"
 import { BsLinkedin } from "react-icons/bs"
 import { BiLogoDiscord } from "react-icons/bi"
-import { FaChessPawn } from "react-icons/fa"
-
 
 export default function Footer() {
     return (
         <footer className='footer_component'>
             <section className="footer_section">
-                <div className="section_logo_wrapper">
+                {/*<div className="section_logo_wrapper">
                     <FaChessPawn className='pawn_icon'/>
                     <h2>Chess</h2>
-                </div>
+                </div>*/}
+                <Logo />
             </section>
 
             <section className="footer_section">

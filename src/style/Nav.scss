@@ -34,6 +34,10 @@
             box-shadow: var.$boxs;
 
             margin-right: 10px;
+            transition: .3s;
+        }
+        .account_signup:hover {
+            background-color: var.$wm-b25;
         }
         .account_signin {
             height: 30px;
@@ -47,6 +51,10 @@
             cursor: pointer;
             background-color: var.$wm-primary;
             box-shadow: var.$boxs;
+            transition: .3s;
+        }
+        .account_signin:hover {
+            background-color: var.$wm-primary-hover;
         }
     }
 }
@@ -100,6 +108,10 @@
             box-shadow: var.$boxs;
 
             margin-right: 10px;
+            transition: .3s;
+        }
+        .account_signup:hover {
+            background-color: var.$wm-b25;
         }
         .account_signin {
             height: 30px;
@@ -113,6 +125,10 @@
             cursor: pointer;
             background-color: var.$wm-primary;
             box-shadow: var.$boxs;
+            transition: .3s;
+        }
+        .account_signin:hover {
+            background-color: var.$wm-primary-hover;
         }
     }
 }

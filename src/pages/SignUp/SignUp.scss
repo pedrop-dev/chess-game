@@ -1,0 +1,66 @@
+@use '../../style/var';
+
+.main_signup {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+    background-color: var.$white100;
+    .signup_section {
+        width: 100%;
+        .section_signup_h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 30px;
+            color: var.$black100;
+        }
+        .section_signup_p {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: var.$wm-b50;
+        }
+    }
+    .main_form_signup {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .form_signup_text {
+            height: 60px;
+            width: 80%;
+            font-size: 18px;
+            margin-top: 30px;
+            padding-left: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            color: var.$wm-b50;
+            background-color: var.$wm-b10;
+        }
+        .form_signup_submit {
+            height: 80px;
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: bolder;
+            margin-top: 60px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+            color: var.$white100;
+            background-color: var.$wm-primary;
+            box-shadow: var.$boxs;
+            transition: .3s;
+        }
+        .form_signup_submit:hover {
+            background-color: var.$wm-primary-hover;
+        }
+    }
+
+}

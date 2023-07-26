@@ -2,59 +2,101 @@
 
 .header_nav_horizontal {
     height: 60px;
-    display: none;
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 15px;
+    flex-direction: column;
     background-color: var.$white100;
-    .header_section_nav {
+    .fixed_header_container {
+        height: 100%;
         display: flex;
         align-items: center;
-        .menuh_icon {
-            font-size: 2em;
-            margin: 0 10px 10px 0px;
-            color: var.$black100;
+        justify-content: space-between;
+        padding: 0px 15px;
+        .header_section_nav {
+            display: flex;
+            align-items: center;
+            .menuh_icon {
+                font-size: 2em;
+                margin: 0 10px 10px 0px;
+                color: var.$black100;
+                cursor: pointer;
+            }
+        }
+
+        .header_aside_account {
+            .account_signup {
+                height: 30px;
+                width: 75px;
+                font-size: 16px;
+                font-weight: bold;
+                color: var.$wm-b50;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: var.$wm-b10;
+                box-shadow: var.$boxs;
+
+                margin-right: 10px;
+                transition: .3s;
+            }
+            .account_signup:hover {
+                background-color: var.$wm-b25;
+            }
+            .account_signin {
+                height: 30px;
+                width: 75px;
+                font-size: 16px;
+                font-weight: bold;
+                color: var.$white100;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: var.$wm-primary;
+                box-shadow: var.$boxs;
+                transition: .3s;
+            }
+            .account_signin:hover {
+                background-color: var.$wm-primary-hover;
+            }
         }
     }
+}
 
-    .header_aside_account {
-        .account_signup {
-            height: 30px;
-            width: 75px;
-            font-size: 16px;
-            font-weight: bold;
-            color: var.$wm-b50;
-            outline: none;
-            border: none;
-            border-radius: 5px;
+.nav_res_container {
+    height: 100vh;
+    width: 100%;
+    display: none;
+    position: absolute;
+    padding-top: 50px;
+    background-color: var.$white100;
+    .nav_horizontal_ul {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 150px;
+        li {
+            width: 120px;
+            height: fit-content;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            list-style: none;
             cursor: pointer;
-            background-color: var.$wm-b10;
-            box-shadow: var.$boxs;
-
-            margin-right: 10px;
-            transition: .3s;
-        }
-        .account_signup:hover {
-            background-color: var.$wm-b25;
-        }
-        .account_signin {
-            height: 30px;
-            width: 75px;
-            font-size: 16px;
-            font-weight: bold;
-            color: var.$white100;
-            outline: none;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: var.$wm-primary;
-            box-shadow: var.$boxs;
-            transition: .3s;
-        }
-        .account_signin:hover {
-            background-color: var.$wm-primary-hover;
+            //background-color: tomato;
+            .horizontal_icon {
+                font-size: 1.5em;
+                color: var.$wm-b50;
+                margin-right: 10px;
+            }
+            p {
+                font-size: 18px;
+                font-weight: 750;
+                color: var.$wm-b50;
+            }
         }
     }
 }
@@ -87,7 +129,6 @@
                 color: var.$wm-b50;
             }
         }
-        
     }
     .header_aside_account_vertical {
         display: flex;

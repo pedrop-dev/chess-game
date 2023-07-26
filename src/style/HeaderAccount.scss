@@ -15,64 +15,6 @@
         left: 5%;
         cursor: pointer;
         color: var.$black100;
+        transition: .3s;
     }
-}
-
-.main_signin {
-    padding-top: 100px;
-    background-color: var.$white100;
-    .signin_section {
-        .section_signin_h1 {
-            text-align: center;
-            font-size: 30px;
-            margin-bottom: 30px;
-            color: var.$black100;
-        }
-        .section_signin_p {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            color: var.$wm-b50;
-        }
-    }
-    .main_form_signin {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .form_signin_text {
-            height: 60px;
-            width: 80%;
-            font-size: 18px;
-            margin-top: 30px;
-            padding-left: 10px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-            color: var.$wm-b50;
-            background-color: var.$wm-b10;
-        }
-        .form_signin_submit {
-            height: 80px;
-            width: 80%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            font-weight: bolder;
-            margin-top: 60px;
-            border: none;
-            border-radius: 5px;
-            outline: none;
-            cursor: pointer;
-            color: var.$white100;
-            background-color: var.$wm-primary;
-            box-shadow: var.$boxs;
-            transition: .3s;
-        }
-        .form_signin_submit:hover {
-            background-color: var.$wm-primary-hover;
-        }
-    }
-
 }

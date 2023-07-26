@@ -1,5 +1,7 @@
 import HeaderAccount from '../../components/HeaderAccount'
 import Footer from '../../components/Footer'
+import '../SignIn/SignIn.scss'
+import '../SignIn/SignInResponsivity.scss'
 
 export default function SignIn() {
     return (

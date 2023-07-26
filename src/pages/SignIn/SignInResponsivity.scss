@@ -1,0 +1,32 @@
+@media screen and (min-width: 600px) and (max-width: 768px) {
+    .main_signin {
+        .signin_section {
+            width: 100%;
+        }
+        .main_form_signin {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+    .main_signin {
+        .signin_section {
+            width: 80%;
+        }
+        .main_form_signin {
+            width: 80%;
+        }
+    }
+}
+
+@media screen and (min-width: 993px) {
+    .main_signin {
+        .signin_section {
+            width: 50%;
+        }
+        .main_form_signin {
+            width: 50%;
+        }
+    }
+}

@@ -2,6 +2,9 @@
     .header_nav_horizontal {
         display: none;
     }
+    .nav_res_container {
+        display: none;
+    }
     .header_nav_vertical {
         display: flex;
     }
@@ -9,6 +12,9 @@
 
 @media screen and (min-width: 993px) {
     .header_nav_horizontal {
+        display: none;
+    }
+    .nav_res_container {
         display: none;
     }
     .header_nav_vertical {

@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
 import '../style/Nav.scss'
@@ -14,26 +15,35 @@ export default function Nav() {
     return (
         <>
             <header className='header_nav_horizontal'>
-                <section className='header_section_nav'>
-                    <AiOutlineMenu className='menuh_icon'/>
-                    <Logo />
-                </section>
-
-                <aside className="header_aside_account">
-
-                    <Link to='/signup'>
-                        <button className='account_signup'>
-                            Sign Up
-                        </button>
-                    </Link>
+                <div className="fixed_header_container">
+                    <section className='header_section_nav'>
+                        <AiOutlineMenu className='menuh_icon'/>
+                        <Logo />
+                    </section>
+                    <aside className="header_aside_account">
+                        <Link to='/signup'>
+                            <button className='account_signup'>
+                                Sign Up
+                            </button>
+                        </Link>
                     
-                    <Link to='/signin'>
-                        <button className='account_signin'>
-                            Sign In
-                        </button>
-                    </Link>
-                </aside>
+                        <Link to='/signin'>
+                            <button className='account_signin'>
+                                Sign In
+                            </button>
+                        </Link>
+                    </aside>
+                </div>
             </header>
+
+            <nav className='nav_res_container'>
+                <ul className='nav_horizontal_ul'>
+                    <li><AiFillHome className='home_icon horizontal_icon'/><p>Home</p></li>
+                    <li><FaUser className='user_icon horizontal_icon'/><p>Account</p></li>
+                    <li><MdSettings className='sett_icon horizontal_icon'/><p>Settings</p></li>
+                    <li><BiWorld className='lang_icon horizontal_icon'/><p>Language</p></li>
+                </ul>
+            </nav>
         
             <header className='header_nav_vertical'>
                 <Logo />

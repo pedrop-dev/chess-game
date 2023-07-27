@@ -1,0 +1,20 @@
+@use './var';
+
+.create_account_header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0px 20px 30px;
+    background-color: var.$white100;
+    .arrow_left_icon {
+        font-size: 1.7em;
+        position: absolute;
+        top: 4%;
+        left: 5%;
+        cursor: pointer;
+        color: var.$black100;
+        transition: .3s;
+    }
+}

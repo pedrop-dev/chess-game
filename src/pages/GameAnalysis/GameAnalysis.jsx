@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import ChessBoard from "../../components/ChessBoard"
 import Piece from "../../components/Piece";
 import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";

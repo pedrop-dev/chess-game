@@ -1,13 +1,21 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import { useEffect, useState, createContext } from 'react';
+import { chessBoardToFEN, fenToChessboard } from '../helpers/fen';
 import Square from './Square'
 
 
 export default function ChessBoard(props) {
   const [chessboardMatrix, setChessboardMatrix] = useState([]);
+  const [squareChildren, setSquareChildren] = useState(null);
 
-  const {squareChildren, setSquareChildren} = props;
+  const {fenPosition} = props;
+
+  useEffect(() => {
+    if (fenPosition !== null && fenPosition !== undefined) {
+      setSquareChildren(fenToChessboard(fenPosition));
+    }
+  }, [fenPosition])
 
   useEffect(() => {
     let chessboard_matrix = Array(8);
@@ -28,7 +36,6 @@ export default function ChessBoard(props) {
   }, [])
 
   let i = -1;
-
 
   return (
     <div className="chessboard">

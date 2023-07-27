@@ -1,73 +1,19 @@
 import ChessBoard from "../../components/ChessBoard"
 import Piece from "../../components/Piece";
 import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Chess } from 'chess.js'
+import { chessBoardToFEN, fenToChessboard } from '../../helpers/fen.js'
 
-function chessBoardToFEN(chessBoard) {
-  const activeColor = 'white';
-  const enPassantSquare = null;
-  // if (!isValidChessBoard(chessBoard)) {
-  //   throw new Error('Invalid chess board');
-  // }
-
-  let fen = '';
-
-  // Convert the board positions
-  for (let rank = 7; rank >= 0; rank--) {
-    let emptySquares = 0;
-    for (let file = 0; file < 8; file++) {
-      const piece = chessBoard[rank][file];
-      if (piece === null) {
-        emptySquares++;
-      } else {
-        if (emptySquares > 0) {
-          fen += emptySquares;
-          emptySquares = 0;
-        }
-        fen += piece;
-      }
-    }
-
-    if (emptySquares > 0) {
-      fen += emptySquares;
-    }
-
-    if (rank !== 0) {
-      fen += '/';
-    }
-  }
-
-  // Add the active color
-  fen += ' ' + (activeColor === 'white' ? 'w' : 'b');
-
-  // Add castling rights
-  const castlingRights = ['K', 'Q', 'k', 'q'];
-  let castlingString = '';
-  for (const castlingRight of castlingRights) {
-    // if (chessBoard[castlingRight] === true) {
-    castlingString += castlingRight;
-    // }
-  }
-
-  fen += ' ' + (castlingString === '' ? '-' : castlingString);
-
-  // Add en-passant target square
-  fen += ' ' + (enPassantSquare === null ? '-' : enPassantSquare);
-
-  // Add half-move and full-move counters
-  // fen += ' ' + halfMoveClock + ' ' + fullMoveNumber;
-  fen += ' 0 1 ';
-
-  return fen;
-}
 
 export default function GameAnalysis(props) {
-  const [squareChildren, setSquareChildren] = useState(null);
   const [engineEval, setEngineEval] = useState(false);
   const [stockfish, setStockfish] = useState(null);
   const [chess, setChess] = useState(null);
   const [isGame, setIsGame] = useState(false);
+  const [invalidMove, setInvalidMove] = useState(false);
+  const [result, setResult] = useState(null);
+  const [chessboardFen, setChessboardFen] = useState('8/8/8/8/8/8/8/8 w - - 0 1')
 
   const mouseSensor = useSensor(MouseSensor); // Initialize mouse sensor
   const touchSensor = useSensor(TouchSensor); // Initialize touch sensor
@@ -110,37 +56,67 @@ export default function GameAnalysis(props) {
     setStockfish(sf);
   }, [])
 
-  const handleDragEnd = (e) => {
+  const handleDragEnd = (e) => { // main loop
     const parent = e.over ? e.over.id : null;
     const sq = parseInt(parent.replace("droppable-", ""))
 
     let row = Math.floor(sq / 8);
     let col = sq % 8;
 
-    let sqChildrenCopy = JSON.parse(JSON.stringify(squareChildren));
+
+    if (isGame) {
+      try {
+        chess.move({from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]), 
+                    to: String.fromCharCode(col + 97) + String(8 - row) })
+      }
+      catch {
+        setInvalidMove(true);
+        return;
+      }
+    }
+
+    let sqChildrenCopy = fenToChessboard(chessboardFen);
 
     sqChildrenCopy[row][col] = e.active.data.current?.type;
 
     if (isGame) {
       sqChildrenCopy[e.active.data.current?.position[0]][e.active.data.current?.position[1]] = null;
-      chess.move({from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]), 
-                  to: String.fromCharCode(col + 97) + String(8 - row) })
+
+      if (chess.isGameOver()) {
+        if (chess.isCheckmate()) {
+          setResult(chess.turn == "w" ? "Black Wins" : "White Wins");
+        }
+
+        else if (chess.isDraw()) {
+          setResult("Game ended in draw");
+        }
+      }
+
+      handleEngineEval();
     }
 
-    setSquareChildren(sqChildrenCopy);
+    setChessboardFen(chessBoardToFEN((sqChildrenCopy)))
   }
 
   const handleEngineEval = () => {
-    const fen = chessBoardToFEN(squareChildren);
-    stockfish.postMessage("position fen " + fen);
+    stockfish.postMessage("position fen " + chessboardFen);
     stockfish.postMessage("go depth 15");
   }
 
   const handleAnalyzeGame = () => {
-    chess.load('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
+    try {
+      chess.load(chessboardFen);
+    }
+
+    catch (e) {
+      console.log("Error while trying to load fen " + chessboardFen);
+      alert("INVALID FEN");
+      return;
+    }
+
     const chessLibBoard = chess.board();
     console.log(chess.board())
-    let squareChildrenCopy = JSON.parse(JSON.stringify(squareChildren));
+    let squareChildrenCopy = fenToChessboard(chessboardFen);
 
     for (let i = 0; i < 8; ++i) {
       for (let j = 0; j < 8; ++j) {
@@ -154,29 +130,38 @@ export default function GameAnalysis(props) {
 
       }
     }
-    setSquareChildren(squareChildrenCopy);
+    setChessboardFen(chessBoardToFEN(squareChildrenCopy));
     setIsGame(true);
   }
 
   const handleGameFromHere = () => {
-    chess.load(chessBoardToFEN(squareChildren));
+    chess.load(chessboardFen);
+    setIsGame(true);
   }
+
+  useEffect(() => {
+    console.log("chessboard fen -> " + chessboardFen);
+    console.log("sqChildren -> ")
+    console.log(fenToChessboard(chessboardFen));
+  })
 
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-      <ChessBoard height='60px' width='60px' squareChildren={squareChildren} setSquareChildren={setSquareChildren}/>
+      {invalidMove && <p> Invalid Move </p>}
+      {result && result}
+      <ChessBoard height='60px' width='60px' fenPosition={chessboardFen}/>
 
-      <Piece type="p" id={1}/>
-      <Piece type="n" id={2}/>
-      <Piece type="k" id={3}/>
-      <Piece type="q" id={4}/>
-      <Piece type="b" id={5}/>
+      <Piece type="p" id={65}/>
+      <Piece type="n" id={66}/>
+      <Piece type="k" id={67}/>
+      <Piece type="q" id={68}/>
+      <Piece type="b" id={69}/>
 
-      <Piece type="P" id={6}/>
-      <Piece type="N" id={7}/>
-      <Piece type="K" id={8}/>
-      <Piece type="Q" id={9}/>
-      <Piece type="B" id={10}/>
+      <Piece type="P" id={70}/>
+      <Piece type="N" id={71}/>
+      <Piece type="K" id={72}/>
+      <Piece type="Q" id={73}/>
+      <Piece type="B" id={74}/>
 
       <button onClick={handleEngineEval}>
         Evaluate Position
@@ -192,6 +177,12 @@ export default function GameAnalysis(props) {
         Game From Here
       </button>
 
+      <button onClick={() => {
+        setChessboardFen('8/8/8/8/8/8/8/8 w KQkq - 0 1');
+        setIsGame(false);
+      }}>
+        Empty Board
+      </button>
     </DndContext>
   )
 }

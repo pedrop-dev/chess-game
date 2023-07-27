@@ -12,12 +12,6 @@ export default function ChessBoard(props) {
   const {fenPosition} = props;
 
   useEffect(() => {
-    if (fenPosition !== null && fenPosition !== undefined) {
-      setSquareChildren(fenToChessboard(fenPosition));
-    }
-  }, [fenPosition])
-
-  useEffect(() => {
     let chessboard_matrix = Array(8);
     let sqC = Array(8);
     for (let i = 0; i < 8; ++i) {
@@ -35,6 +29,12 @@ export default function ChessBoard(props) {
     setSquareChildren(sqC);
   }, [])
 
+  useEffect(() => {
+    if (fenPosition !== null && fenPosition !== undefined) {
+      setSquareChildren(fenToChessboard(fenPosition));
+    }
+  }, [fenPosition])
+
   let i = -1;
 
   return (
@@ -43,15 +43,15 @@ export default function ChessBoard(props) {
         i++;
         let j = 0;
         return <div style={{display: "flex", flexDirection: "row"}}>
-           {row.map((sqColor) => 
-            <Square 
+           {row.map((sqColor) => {
+            return <Square 
               height={props.height}
               width={props.width}
               color={sqColor}
               id={8*i + (j)}
               rank={i}
               file={j}
-              child={squareChildren[i][j++]}/>)} 
+              child={squareChildren[i][j++]}/>})} 
 
         </div>
       })}

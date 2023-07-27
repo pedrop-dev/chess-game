@@ -3,6 +3,9 @@ import Footer from '../../components/Footer'
 import '../SignIn/SignIn.scss'
 import '../SignIn/SignInResponsivity.scss'
 
+//Icons
+import { MdEmail, MdLock } from "react-icons/md";
+
 export default function SignIn() {
     return (
         <>
@@ -18,17 +21,23 @@ export default function SignIn() {
                 </section>
 
                 <form className="main_form_signin">
-                    <input 
-                        type="text" 
-                        placeholder='Email'
-                        className='form_signin_text'
-                    />
+                    <div>
+                        <MdEmail className='email_pass_icons'/>
+                        <input
+                            type="text"
+                            placeholder='Email'
+                            className='form_signin_text'
+                        />
+                    </div>
 
-                    <input 
-                        type="text" 
-                        placeholder='Password'
-                        className='form_signin_text'
-                    />
+                    <div>
+                        <MdLock className='email_pass_icons'/>
+                        <input
+                            type="text"
+                            placeholder='Password'
+                            className='form_signin_text'
+                        />
+                    </div>
 
                     <input 
                         type="submit" 

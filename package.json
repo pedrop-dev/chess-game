@@ -17,7 +17,8 @@
     "react-icons": "^4.10.1",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-router-dom": "^6.14.2",
-    "sass": "^1.63.6"
+    "sass": "^1.63.6",
+    "socket.io-client": "^4.7.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",

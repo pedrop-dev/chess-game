@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp/SignUp'
 import SignIn from './pages/SignIn/SignIn'
 import GameAnalysis from "./pages/GameAnalysis/GameAnalysis"
 import PlayBot from './pages/PlayBot/PlayBot'
+import MultiPlayer from './pages/MultiPlayer/MultiPlayer'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/signin" element={<SignIn/>} />
           <Route path="/game-analysis" element={<GameAnalysis/>}/>
           <Route path="/play-bot" element={<PlayBot/>}/>
+          <Route path="/play-game" element={<MultiPlayer/>}/>
         </Routes>
       </BrowserRouter>
     </>

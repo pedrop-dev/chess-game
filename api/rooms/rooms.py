@@ -1,7 +1,8 @@
 from flask_socketio import join_room, leave_room, emit
-from flask import current_app
+from flask import current_app, json
 from .socketio import socketio
 import sys
+import json
 
 @socketio.on('join_room')
 def on_join(data):
@@ -10,7 +11,13 @@ def on_join(data):
 
     if room is not None:
         join_room(room)
-        emit("success_join_room")
+        if current_app.config['rooms'][int(room)] == 1:
+            data = {'color': 'w'}
+
+        else:
+            data = {'color': 'b'}
+
+        emit("success_join_room", data)
         return
 
     print("JOINING ROOM", file=sys.stderr)
@@ -41,3 +48,7 @@ def on_leave(data):
     room = data['room']
     leave_room(room)
     socketio.emit('message', f'{username} has left room {room}', room=room)
+
+@socketio.on("move")
+def on_move(data):
+    emit('opponent_move', {'move': json.dumps(data['move'])}, room=data['room'])

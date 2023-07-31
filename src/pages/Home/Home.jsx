@@ -24,7 +24,7 @@ export default function Home() {
     socket.on("success_join_room", (data) => {
       localStorage.setItem('username', username);
       window.location.href = "/play-game?" + new URLSearchParams({room: data.room});
-    })
+    }, [])
   })
 
     return (

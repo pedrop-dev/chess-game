@@ -4,9 +4,10 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    position: absolute;
+    position: static;
     top: 100%;
     padding: 40px 0px 0px 17%;
+    margin-top: 10%;
     background-color: var.$black100;
     .footer_section {
         h2 {

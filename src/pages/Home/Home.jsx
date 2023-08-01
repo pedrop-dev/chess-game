@@ -1,6 +1,7 @@
 import Footer from '../../components/Footer'
 import Nav from '../../components/Nav'
 import './Home.scss'
+import './HomeResponsivity.scss'
 import io from 'socket.io-client'
 import { API_BASE_URL } from '../../constants.js'
 import { useState, useEffect } from 'react'
@@ -33,7 +34,9 @@ export default function Home() {
             <main className='home_main'>
                 <h1 className='home_main_h1'>Play Chess!</h1>
                 <section className='home_main_section'>
+
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
+
                     <button className='home_section_online home_buttons' onClick={handleJoinRoom}>
                         <FaChessPawn/>Play Online
                     </button>
@@ -41,10 +44,14 @@ export default function Home() {
                     <button className='home_section_computer home_buttons'>
                         <FaRobot/>Play Computer
                     </button>
-                </section>
-                <section>
-                </section>
 
+                </section>
+                <section className='home_second_section'>
+                    <p>Let´s play</p> 
+                    <div className='home_board'>
+
+                    </div>
+                </section>
             </main>
             <Footer />
         </>

@@ -1,6 +1,7 @@
 @use '../../style/var';
 
 .home_main {
+    min-height: 100vh;
     width: 100%;
     padding-top: 100px;
     background-color: var.$white100;
@@ -44,6 +45,23 @@
         }
         .home_section_computer:hover {
             background-color: var.$wm-b25;
+        }
+    }
+    .home_second_section {
+        width: 100%;
+        p {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: var.$wm-b50;
+            margin: 50px 0px 10px 0px;
+        }
+        .home_board {
+            height: 470px;
+            width: 80%;
+            margin: 0px auto 0px auto;
+            border-radius: 5px;
+            background-color: var.$wm-b10;
         }
     }
 }

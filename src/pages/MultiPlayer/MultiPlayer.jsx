@@ -23,12 +23,25 @@ const MultiPlayer = () => {
   const [fenPosition, setFenPosition] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
   const [invalidMove, setInvalidMove] = useState(null)
   const [game, setGame] = useState(null);
+  const [players, setPlayers] = useState(null);
+  const [opponentPlayer, setOpponentPlayer] = useState('');
   const [playerColor, setPlayerColor] = useState(null);
 
   useEffect(() => {
     var g = new Chess(fenPosition);
     setGame(g);
   }, [])
+
+  useEffect(() => {
+    socket.on("new_player", () => {
+      fetch(`${API_BASE_URL}/room/${socketioRoom}`)
+        .then(res => res.json())
+        .then(data => {
+          setPlayers(data.players);
+          setOpponentPlayer(data.filter((player) => player !== username))
+        });
+    })
+  }, []);
 
   useEffect(() => {
     socket.emit("join_room", {room: socketioRoom, username: username})
@@ -96,10 +109,11 @@ const MultiPlayer = () => {
   return (
     <>
       <h2> {socketioRoom} </h2>
-      <p>{username}</p>
+      <p>{opponentPlayer}</p>
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         <ChessBoard width="60px" height="60px" fenPosition={fenPosition}/>
       </DndContext>
+      <p>{username}</p>
     </>
   )
 }

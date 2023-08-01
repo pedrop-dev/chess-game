@@ -12,12 +12,19 @@ import { MdSettings } from "react-icons/md"
 import { BiWorld } from "react-icons/bi"
 
 export default function Nav() {
+
+    const [openNav, setOpenNav] = useState(false)
+
+    const changeNav = () => {
+        setOpenNav((curr) => !curr)   
+    }
+
     return (
         <>
             <header className='header_nav_horizontal'>
                 <div className="fixed_header_container">
                     <section className='header_section_nav'>
-                        <AiOutlineMenu className='menuh_icon'/>
+                        <AiOutlineMenu className='menuh_icon' onClick={changeNav}/>
                         <Logo />
                     </section>
                     <aside className="header_aside_account">
@@ -35,15 +42,16 @@ export default function Nav() {
                     </aside>
                 </div>
             </header>
-
-            <nav className='nav_res_container'>
+            
+            {openNav &&
+                <nav className='nav_res_container'>
                 <ul className='nav_horizontal_ul'>
                     <li><AiFillHome className='home_icon horizontal_icon'/><p>Home</p></li>
                     <li><FaUser className='user_icon horizontal_icon'/><p>Account</p></li>
                     <li><MdSettings className='sett_icon horizontal_icon'/><p>Settings</p></li>
                     <li><BiWorld className='lang_icon horizontal_icon'/><p>Language</p></li>
                 </ul>
-            </nav>
+            </nav>}
         
             <header className='header_nav_vertical'>
                 <Logo />

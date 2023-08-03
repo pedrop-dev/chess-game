@@ -11,14 +11,8 @@ def on_join(data):
 
     if room is not None:
         join_room(room)
-        if current_app.config['rooms'][int(room)]['num'] == 1:
-            data = {'color': 'w'}
-
-        else:
-            data = {'color': 'b'}
-
         emit('new_player', room=room)
-        emit("success_join_room", data, room=room)
+        emit('succes_join_room')
         return
 
     print("JOINING ROOM", file=sys.stderr)
@@ -29,14 +23,15 @@ def on_join(data):
             emit('message', f'{username} has joined room {room}', room=room)
 
             data = {'room': room}
-            emit("success_join_room", data, room=room)
 
             current_app.config['rooms'][room]['num'] += 1
-            current_app.config['rooms'][room]['players'].append(username)
+            current_app.config['rooms'][room]['players']['b'] = username
+
+            emit('success_join_room', {'room': room}, room=room)
             return
 
     new_room = len(current_app.config['rooms']) + 1
-    current_app.config['rooms'][new_room] = {'num': 1, 'players': [username]}
+    current_app.config['rooms'][new_room] = {'num': 1, 'players': {'w': username}}
     join_room(new_room)
 
     emit('message', f'{username} has joined room {new_room}', room=new_room)

@@ -37,17 +37,21 @@ const MultiPlayer = () => {
       fetch(`${API_BASE_URL}/room/${socketioRoom}`)
         .then(res => res.json())
         .then(data => {
-          setPlayers(data.players);
-          setOpponentPlayer(data.filter((player) => player !== username))
+          console.log(data);
+          setOpponentPlayer(data.w === username ? data.b : data.w)
+          if (data.w === username) {
+            setPlayerColor('w');
+          }
+
+          else {
+            setPlayerColor('b');
+          }
         });
     })
   }, []);
 
   useEffect(() => {
     socket.emit("join_room", {room: socketioRoom, username: username})
-    socket.on("success_join_room", (data) => {
-      setPlayerColor(data.color);
-    })
   }, [])
 
   useEffect(()=> {
@@ -106,12 +110,15 @@ const MultiPlayer = () => {
                     to: String.fromCharCode(col + 97) + String(8 - row) }, room: socketioRoom})
   }
 
+  useEffect(() => {
+    console.log(playerColor);
+  }, [playerColor])
   return (
     <>
       <h2> {socketioRoom} </h2>
       <p>{opponentPlayer}</p>
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-        <ChessBoard width="60px" height="60px" fenPosition={fenPosition}/>
+        <ChessBoard width="60px" height="60px" fenPosition={fenPosition} perspective={playerColor}/>
       </DndContext>
       <p>{username}</p>
     </>

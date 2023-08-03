@@ -88,7 +88,7 @@ const PlayBot = () => {
     <div>
       {invalidMove && "Invalid Move"}
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-        <ChessBoard fenPosition={fenPosition} height="60px" width="60px"/>
+        <ChessBoard fenPosition={fenPosition} height="60px" width="60px" perspective={"w"}/>
       </DndContext>
     </div>
   )

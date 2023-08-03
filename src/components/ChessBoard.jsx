@@ -9,10 +9,25 @@ import Square from './Square'
 export default function ChessBoard(props) {
   const [chessboardMatrix, setChessboardMatrix] = useState([]);
   const [squareChildren, setSquareChildren] = useState(null);
+  const [invert, setInvert] = useState(false);
+  const [persp, setPersp] = useState(null);
 
-  const {fenPosition} = props;
+  const {fenPosition, perspective} = props;
 
   useEffect(() => {
+    if (perspective === "w") {
+      setPersp(0);
+    }
+
+    else {
+      setPersp(1);
+    }
+  }, [perspective])
+
+  useEffect(() => {
+    console.log("perspective -> " + perspective);
+    console.log(persp)
+
     let chessboard_matrix = Array(8);
     let sqC = Array(8);
     for (let i = 0; i < 8; ++i) {
@@ -20,7 +35,7 @@ export default function ChessBoard(props) {
       chessboard_matrix[i] = Array(8);
       sqC[i] = Array(8);
       for (let j = 0; j < 8; ++j) {
-        chessboard_matrix[i][j] = (i+j) % 2 == 0 ? 0 : 1;
+        chessboard_matrix[i][j] = (i+j+persp) % 2;
         sqC[i][j] = null;
       }
     }
@@ -36,26 +51,50 @@ export default function ChessBoard(props) {
     }
   }, [fenPosition])
 
+
   let i = -1;
 
-  return (
-    <div className="chessboard">
-      {chessboardMatrix.map((row) => {
-        i++;
-        let j = 0;
-        return <div style={{display: "flex", flexDirection: "row"}}>
-           {row.map((sqColor) => {
-            return <Square 
-              height={props.height}
-              width={props.width}
-              color={sqColor}
-              id={8*i + (j)}
-              rank={i}
-              file={j}
-              child={squareChildren[i][j++]}/>})} 
+  if (persp == 0) {
+    return (
+      <div className="chessboard">
+        {chessboardMatrix.map((row) => {
+          i++;
+          let j = 0;
+          return <div style={{display: "flex", flexDirection: "row"}}>
+             {row.map((sqColor) => {
+              return <Square 
+                height={props.height}
+                width={props.width}
+                color={sqColor}
+                id={8*i + (j)}
+                rank={i}
+                file={j}
+                child={squareChildren[i][j++]}/>})} 
+          </div>
+        })}
+      </div>
+    )
+  }
 
-        </div>
-      })}
-    </div>
-  )
+  else {
+    return (
+      <div className="chessboard">
+        {chessboardMatrix.map((row) => {
+          i++;
+          let j = 0;
+          return <div style={{display: "flex", flexDirection: "row"}}>
+             {row.map((sqColor) => {
+              return <Square 
+                height={props.height}
+                width={props.width}
+                color={sqColor}
+                id={8*(7-i) + (7-j)}
+                rank={7-i}
+                file={7-j}
+                child={squareChildren[7-i][7-j++]}/>})} 
+          </div>
+        })}
+      </div>
+    )
+  }
 }

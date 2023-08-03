@@ -150,7 +150,7 @@ export default function GameAnalysis(props) {
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
       {invalidMove && <p> Invalid Move </p>}
       {result && result}
-      <ChessBoard height='60px' width='60px' fenPosition={chessboardFen}/>
+      <ChessBoard height='60px' width='60px' fenPosition={chessboardFen} perspective={"b"}/>
 
       <Piece type="p" id={65}/>
       <Piece type="n" id={66}/>

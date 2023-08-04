@@ -5,6 +5,7 @@ import './HomeResponsivity.scss'
 import io from 'socket.io-client'
 import { API_BASE_URL } from '../../constants.js'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 //Icons 
 import { FaChessPawn } from "react-icons/fa"
@@ -36,15 +37,18 @@ export default function Home() {
             <Nav />
             <main className='home_main'>
                 <h1 className='home_main_h1'>Play Chess!</h1>
-                <section className='home_main_section'>
-                    <button className='home_section_online home_buttons' onClick={handleJoinRoom}>
-                        <FaChessPawn/>Play Online
-                    </button>
+                <section className='home_main_section'>  
+                    <Link to='/play-game'>
+                        <button className='home_section_online home_buttons' onClick={handleJoinRoom}>
+                            <FaChessPawn/>Play Online
+                        </button>
+                    </Link>
 
-                    <button className='home_section_computer home_buttons'>
-                        <FaRobot/>Play Computer
-                    </button>
-
+                    <Link to='/play-bot'>
+                        <button className='home_section_computer home_buttons'>
+                            <FaRobot/>Play Computer
+                        </button>
+                    </Link>
                 </section>
                 <section className='home_second_section'>
                     <p>Let´s play</p> 

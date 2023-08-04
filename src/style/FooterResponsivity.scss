@@ -1,11 +1,13 @@
 @media screen and (min-width: 600px) and (max-width: 768px) {
     .footer_component {
+        height: 300px;
         padding-left: 20%;
     }
 }
 
 @media screen and (min-width: 769px) and (max-width: 992px) {
     .footer_component {
+        height: 300px;
         display: flex;
         justify-content: space-around;
         padding: 90px 0px 0px 0px;
@@ -14,6 +16,7 @@
 
 @media screen and (min-width: 993px) {
     .footer_component {
+        height: 300px;
         display: flex;
         justify-content: space-around;
         padding: 90px 0px 0px 0px;

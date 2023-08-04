@@ -16,7 +16,7 @@ export default function Nav() {
     const [openNav, setOpenNav] = useState(false)
 
     const changeNav = () => {
-        setOpenNav((curr) => !curr)   
+        setOpenNav((curr) => !curr)
     }
 
     return (

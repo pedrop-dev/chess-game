@@ -14,16 +14,19 @@ const socket = io(API_BASE_URL)
 
 
 export default function Home() {
-    const [username, setUsername] = useState('')
 
-    const handleJoinRoom = () => {
-      socket.emit('join_room', { username })
-      console.log("JOINING ROOM")
+  const handleJoinRoom = () => {
+    const token = localStorage.getItem('token');
+    if (token === null || token == undefined) {
+      console.log('user not logged in');
+      return;
     }
+    socket.emit('join_room', { token })
+    console.log("JOINING ROOM")
+  }
 
-    useEffect(() => {
+  useEffect(() => {
     socket.on("success_join_room", (data) => {
-      localStorage.setItem('username', username);
       window.location.href = "/play-game?" + new URLSearchParams({room: data.room});
     }, [])
   })
@@ -34,9 +37,6 @@ export default function Home() {
             <main className='home_main'>
                 <h1 className='home_main_h1'>Play Chess!</h1>
                 <section className='home_main_section'>
-
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
-
                     <button className='home_section_online home_buttons' onClick={handleJoinRoom}>
                         <FaChessPawn/>Play Online
                     </button>

@@ -34,7 +34,8 @@ def create_app():
         MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
         MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD'),
         MAIL_USE_TLS=True,
-        MAIL_USE_SSL=False
+        MAIL_USE_SSL=False,
+        FINALIZE_URI=os.environ.get("FRONTEND_DOMAIN") + '/confirm-registration' #type: ignore
     )
 
     mail = Mail(app)

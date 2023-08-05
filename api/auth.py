@@ -47,7 +47,11 @@ def sign_up():
 
     print(current_app.config['MAIL_USERNAME'])
     print(current_app.config['MAIL_PASSWORD'])
-    guard.send_registration_email(email, user=new_user, confirmation_sender=current_app.config['MAIL_USERNAME'], confirmation_uri="http://localhost:5173/confirm-register")
+    guard.send_registration_email(email,
+                                  user=new_user,
+                                  confirmation_sender=current_app.config['MAIL_USERNAME'],
+                                  confirmation_uri=current_app.config["FINALIZE_URI"])
+
     return 'success', 201
 
 @bp.route('/api/finalize', methods=["POST"])

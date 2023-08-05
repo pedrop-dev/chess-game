@@ -7,6 +7,7 @@ import SignIn from './pages/SignIn/SignIn'
 import GameAnalysis from "./pages/GameAnalysis/GameAnalysis"
 import PlayBot from './pages/PlayBot/PlayBot'
 import MultiPlayer from './pages/MultiPlayer/MultiPlayer'
+import ConfirmRegistration from './pages/ConfirmRegistration/ConfirmRegistration'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/game-analysis" element={<GameAnalysis/>}/>
           <Route path="/play-bot" element={<PlayBot/>}/>
           <Route path="/play-game" element={<MultiPlayer/>}/>
+          <Route path="/confirm-registration" element={<ConfirmRegistration/>}/>
         </Routes>
       </BrowserRouter>
     </>

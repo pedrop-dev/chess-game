@@ -2,11 +2,34 @@ import HeaderAccount from '../../components/HeaderAccount'
 import Footer from '../../components/Footer'
 import '../SignIn/SignIn.scss'
 import '../SignIn/SignInResponsivity.scss'
+import {API_BASE_URL} from "../../constants.js"
+import {useState} from "react"
 
 //Icons
 import { MdEmail, MdLock } from "react-icons/md";
 
 export default function SignIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch(`${API_BASE_URL}/api/login`, {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.hasOwnProperty("access_token")) {
+          localStorage.setItem("token", data.access_token);
+          alert("Successful login")
+        }
+      })
+  }
     return (
         <>
             <HeaderAccount/>
@@ -20,11 +43,12 @@ export default function SignIn() {
                     </p>
                 </section>
 
-                <form className="main_form_signin">
+                <form className="main_form_signin" onSubmit={handleSubmit}>
                     <div>
                         <MdEmail className='email_pass_icons'/>
                         <input
-                            type="text"
+                            onChange={(e) => setEmail(e.target.value)}
+                            type="email"
                             placeholder='Email'
                             className='form_signin_text'
                         />
@@ -33,7 +57,8 @@ export default function SignIn() {
                     <div>
                         <MdLock className='email_pass_icons'/>
                         <input
-                            type="text"
+                            onChange={(e) => setPassword(e.target.value)}
+                            type="password"
                             placeholder='Password'
                             className='form_signin_text'
                         />

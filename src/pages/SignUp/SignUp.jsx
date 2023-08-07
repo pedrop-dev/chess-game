@@ -2,11 +2,33 @@ import HeaderAccount from '../../components/HeaderAccount'
 import Footer from '../../components/Footer'
 import '../SignUp/SignUp.scss'
 import '../SignUp/SignUpResponsivity.scss'
+import {API_BASE_URL} from "../../constants.js"
+import { useState } from 'react'
 
 //Icons
 import { MdEmail, MdLock } from "react-icons/md";
 
 export default function SignUp() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch(`${API_BASE_URL}/api/signup`, {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.hasOwnProperty("result") && data.result === "success") {
+          alert("User registered, check your email to confirm");
+        }
+      });
+  }
+
     return (
         <>
             <HeaderAccount/>
@@ -20,22 +42,26 @@ export default function SignUp() {
                     </p>
                 </section>
 
-                <form className="main_form_signup">
+                <form className="main_form_signup" onSubmit={handleSubmit}>
                     <div>
                         <MdEmail className='email_pass_icons'/>
                         <input
-                            type="text"
+                            onChange={(e) => setEmail(e.target.value)}
+                            type="email"
                             placeholder='Email'
                             className='form_signup_text'
+                            name="email"
                         />
                     </div>
 
                     <div>
                         <MdLock className='email_pass_icons'/>
                         <input
-                            type="text"
+                            onChange={(e) => setPassword(e.target.value)}
+                            type="password"
                             placeholder='Password'
                             className='form_signup_text'
+                            name="password"
                         />
                     </div>
 

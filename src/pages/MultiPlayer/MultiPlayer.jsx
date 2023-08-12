@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import { useLocation } from "react-router-dom"
 import io from "socket.io-client"
 import { API_BASE_URL } from "../../constants";
@@ -7,6 +9,8 @@ import { DndContext } from "@dnd-kit/core";
 import { fenToChessboard } from "../../helpers/fen";
 import { useSensor, useSensors, MouseSensor, TouchSensor } from "@dnd-kit/core";
 import { Chess } from "chess.js";
+import Nav from '../../components/Nav'
+import './MultiPlayer.scss'
 
 const socket = io(API_BASE_URL)
 
@@ -115,13 +119,23 @@ const MultiPlayer = () => {
   }, [playerColor])
   return (
     <>
+     <Nav />
+      <main className="chess_board_container">
       <h2> {socketioRoom} </h2>
       <p>{opponentPlayer}</p>
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-        <ChessBoard width="60px" height="60px" fenPosition={fenPosition} perspective={playerColor}/>
+        <ChessBoard 
+          width="60px" 
+          height="60px" 
+          fenPosition={fenPosition} 
+          perspective={playerColor}
+          className='chess_board'
+        />
       </DndContext>
       <p>{username}</p>
+    </main>
     </>
+    
   )
 }
 

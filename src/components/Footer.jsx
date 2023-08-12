@@ -24,9 +24,9 @@ export default function Footer() {
             <section className="footer_section">
                 <h2>Contact</h2>
                 <ul>
-                    <li><a href="mailto:contact@gmail.com">contact@gmail.com</a></li>
-                    <li><a href="mailto:contact@gmail.com">contact@gmail.com</a></li>
-                    <li><a href="mailto:contact@gmail.com">contact@gmail.com</a></li>
+                    <li><a href="mailto:contact@gmail.com">heitorrdpp@gmail.com</a></li>
+                    <li><a href="mailto:contact@gmail.com">pedroh.ps0102@gmail.com</a></li>
+                    {/*<li><a href="mailto:contact@gmail.com">contact@gmail.com</a></li>*/}
                 </ul>
             </section>
 

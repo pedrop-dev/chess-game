@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-unescaped-entities */
 import Footer from '../../components/Footer'
 import Nav from '../../components/Nav'
 import './Home.scss'
@@ -51,7 +53,7 @@ export default function Home() {
                     </Link>
                 </section>
                 <section className='home_second_section'>
-                    <p>Let´s play</p> 
+                    <p>Let's play</p> 
                     <div className='home_board'>
 
                     </div>

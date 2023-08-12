@@ -46,9 +46,13 @@ export default function Nav() {
             {openNav &&
                 <nav className='nav_res_container'>
                 <ul className='nav_horizontal_ul'>
-                    <li><AiFillHome className='home_icon horizontal_icon'/><p>Home</p></li>
+                    <Link to='/'>
+                        <li><AiFillHome className='home_icon horizontal_icon'/><p>Home</p></li>
+                    </Link>
                     <li><FaUser className='user_icon horizontal_icon'/><p>Account</p></li>
-                    <li><MdSettings className='sett_icon horizontal_icon'/><p>Settings</p></li>
+                    <Link to='/settings'>
+                        <li><MdSettings className='sett_icon horizontal_icon'/><p>Settings</p></li>
+                    </Link>
                     <li><BiWorld className='lang_icon horizontal_icon'/><p>Language</p></li>
                 </ul>
             </nav>}
@@ -57,9 +61,13 @@ export default function Nav() {
                 <Logo />
 
                 <ul className='nav_vertical_ul vertical_icon'>
-                    <li><AiFillHome className='home_icon vertical_icon'/><p>Home</p></li>
+                    <Link to='/'>
+                        <li><AiFillHome className='home_icon vertical_icon'/><p>Home</p></li>
+                    </Link>
                     <li><FaUser className='user_icon vertical_icon'/><p>Account</p></li>
-                    <li><MdSettings className='sett_icon vertical_icon'/><p>Settings</p></li>
+                    <Link to='/settings'>
+                        <li><MdSettings className='sett_icon vertical_icon'/><p>Settings</p></li>
+                    </Link>
                     <li><BiWorld className='lang_icon vertical_icon'/><p>Language</p></li>
                 </ul>
 

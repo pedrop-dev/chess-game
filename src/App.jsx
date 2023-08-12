@@ -8,6 +8,7 @@ import GameAnalysis from "./pages/GameAnalysis/GameAnalysis"
 import PlayBot from './pages/PlayBot/PlayBot'
 import MultiPlayer from './pages/MultiPlayer/MultiPlayer'
 import ConfirmRegistration from './pages/ConfirmRegistration/ConfirmRegistration'
+import Settings from './pages/Settings/Settings'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/signin" element={<SignIn/>} />
+          <Route path="/settings" element={<Settings/>} />
           <Route path="/game-analysis" element={<GameAnalysis/>}/>
           <Route path="/play-bot" element={<PlayBot/>}/>
           <Route path="/play-game" element={<MultiPlayer/>}/>

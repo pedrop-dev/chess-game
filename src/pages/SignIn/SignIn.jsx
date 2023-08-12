@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import HeaderAccount from '../../components/HeaderAccount'
 import Footer from '../../components/Footer'
 import '../SignIn/SignIn.scss'

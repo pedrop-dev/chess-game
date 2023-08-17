@@ -21,10 +21,10 @@ export default function Nav() {
 
     return (
         <>
-            <header className='header_nav_horizontal'>
+            <nav className='header_nav_horizontal'>
                 <div className="fixed_header_container">
                     <section className='header_section_nav'>
-                        <AiOutlineMenu className='menuh_icon' onClick={changeNav}/>
+                        <AiOutlineMenu className='menuh_icon' onClick={changeNav} />
                         <Logo />
                     </section>
                     <aside className="header_aside_account">
@@ -33,7 +33,7 @@ export default function Nav() {
                                 Sign Up
                             </button>
                         </Link>
-                    
+
                         <Link to='/signin'>
                             <button className='account_signin'>
                                 Sign In
@@ -41,34 +41,34 @@ export default function Nav() {
                         </Link>
                     </aside>
                 </div>
-            </header>
-            
+            </nav>
+
             {openNav &&
                 <nav className='nav_res_container'>
-                <ul className='nav_horizontal_ul'>
-                    <Link to='/'>
-                        <li><AiFillHome className='home_icon horizontal_icon'/><p>Home</p></li>
-                    </Link>
-                    <li><FaUser className='user_icon horizontal_icon'/><p>Account</p></li>
-                    <Link to='/settings'>
-                        <li><MdSettings className='sett_icon horizontal_icon'/><p>Settings</p></li>
-                    </Link>
-                    <li><BiWorld className='lang_icon horizontal_icon'/><p>Language</p></li>
-                </ul>
-            </nav>}
-        
+                    <ul className='nav_horizontal_ul'>
+                        <Link to='/'>
+                            <li><AiFillHome className='home_icon horizontal_icon' /><p>Home</p></li>
+                        </Link>
+                        <li><FaUser className='user_icon horizontal_icon' /><p>Account</p></li>
+                        <Link to='/settings'>
+                            <li><MdSettings className='sett_icon horizontal_icon' /><p>Settings</p></li>
+                        </Link>
+                        <li><BiWorld className='lang_icon horizontal_icon' /><p>Language</p></li>
+                    </ul>
+                </nav>}
+
             <header className='header_nav_vertical'>
                 <Logo />
 
                 <ul className='nav_vertical_ul vertical_icon'>
                     <Link to='/'>
-                        <li><AiFillHome className='home_icon vertical_icon'/><p>Home</p></li>
+                        <li><AiFillHome className='home_icon vertical_icon' /><p>Home</p></li>
                     </Link>
-                    <li><FaUser className='user_icon vertical_icon'/><p>Account</p></li>
+                    <li><FaUser className='user_icon vertical_icon' /><p>Account</p></li>
                     <Link to='/settings'>
-                        <li><MdSettings className='sett_icon vertical_icon'/><p>Settings</p></li>
+                        <li><MdSettings className='sett_icon vertical_icon' /><p>Settings</p></li>
                     </Link>
-                    <li><BiWorld className='lang_icon vertical_icon'/><p>Language</p></li>
+                    <li><BiWorld className='lang_icon vertical_icon' /><p>Language</p></li>
                 </ul>
 
                 <aside className="header_aside_account_vertical">
@@ -78,7 +78,7 @@ export default function Nav() {
                             Sign Up
                         </button>
                     </Link>
-                    
+
                     <Link to='/signin'>
                         <button className='account_signin'>
                             Sign In
@@ -86,6 +86,6 @@ export default function Nav() {
                     </Link>
                 </aside>
             </header>
-        </> 
+        </>
     )
 }

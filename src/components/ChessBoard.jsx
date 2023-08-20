@@ -4,6 +4,7 @@
 import { useEffect, useState, createContext } from 'react';
 import { chessBoardToFEN, fenToChessboard } from '../helpers/fen';
 import Square from './Square'
+import '../style/ChessBoard.scss'
 
 
 export default function ChessBoard(props) {

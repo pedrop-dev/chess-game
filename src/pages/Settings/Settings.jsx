@@ -14,13 +14,13 @@ export default function Settings() {
             <h2><MdSettings/>Settings</h2>
             <ul className='settings_main_options'>
                 <li>
-                    Change theme
+                    <h3>Change theme</h3>
                     <ul>
                         <li>
-                            <button className='options_theme_button white_mode'>White mode</button>
+                            <a className='options_theme_button white_mode'>White mode</a>
                         </li>
                         <li>
-                            <button className='options_theme_button dark_mode'>Dark mode</button>
+                            <a className='options_theme_button dark_mode'>Dark mode</a>
                         </li>
                     </ul>
                 </li>

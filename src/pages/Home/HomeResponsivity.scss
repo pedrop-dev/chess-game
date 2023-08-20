@@ -1,14 +1,45 @@
+@media screen and (max-width: 768px) {
+    .home_main {
+        .home_second_section {
+            .home_board {
+                height: 100%;
+                width: 80%;
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (min-width: 769px) and (max-width: 992px) {
     .home_main {
         width: 75%;
         margin: 0 0 0 25%;
+        .home_second_section {
+            .home_board {
+                height: 100%;
+                width: 80%;
+                img {
+                    width: 100%;
+                }
+            }
+        }
     }
 }
 
 @media screen and (min-width: 993px) {
     .home_main {
         width: 60%;
-
         margin-left: 25%;
+        .home_second_section {
+            .home_board {
+                height: 100%;
+                width: 80%;
+                img {
+                    width: 100%;
+                }
+            }
+        }
     }
 }

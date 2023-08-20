@@ -55,7 +55,7 @@ export default function Home() {
                 <section className='home_second_section'>
                     <p>Let's play</p> 
                     <div className='home_board'>
-
+                      <img src="../../public/chessboard.png" alt="chess-board image"/>
                     </div>
                 </section>
             </main>

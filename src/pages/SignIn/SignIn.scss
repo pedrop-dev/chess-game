@@ -5,21 +5,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 100px;
-    background-color: var.$white100;
+    padding: 100px 0px;
     .signin_section {
         width: 100%;
         .section_signin_h1 {
             text-align: center;
             font-size: 30px;
             margin-bottom: 30px;
-            color: var.$black100;
         }
         .section_signin_p {
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            color: var.$wm-b50;
         }
     }
     .main_form_signin {
@@ -39,8 +36,6 @@
                 padding-left: 10px;
                 border-radius: 5px 0px 0px 5px;
                 margin-top: 30px;
-                background-color: var.$wm-b10;
-                color: var.$wm-b50;
             }
             .form_signin_text {
                 height: 60px;
@@ -51,8 +46,6 @@
                 border-radius: 0px 5px 5px 0px;
                 border: none;
                 outline: none;
-                color: var.$wm-b50;
-                background-color: var.$wm-b10;
             }
         }
         .form_signin_text {
@@ -64,8 +57,6 @@
             border-radius: 5px;
             border: none;
             outline: none;
-            color: var.$wm-b50;
-            background-color: var.$wm-b10;
         }
         .form_signin_submit {
             height: 80px;
@@ -81,14 +72,87 @@
             border-radius: 5px;
             outline: none;
             cursor: pointer;
-            color: var.$white100;
-            background-color: var.$wm-primary;
             box-shadow: var.$boxs;
             transition: .3s;
+        }
+    }
+}
+
+//Light mode
+
+#light .main_signin {
+    background-color: var.$white100;
+    .signin_section {
+        .section_signin_h1 {
+            color: var.$black100;
+        }
+        .section_signin_p {
+            color: var.$wm-b50;
+        }
+    }
+    .main_form_signin {
+        div {
+            .email_pass_icons {
+                background-color: var.$wm-b10;
+                color: var.$wm-b50;
+            }
+            .form_signin_text {
+                color: var.$wm-b50;
+                background-color: var.$wm-b10;
+            }
+        }
+        .form_signin_text {
+            color: var.$wm-b50;
+            background-color: var.$wm-b10;
+        }
+        .form_signin_submit {
+            color: var.$white100;
+            background-color: var.$wm-primary;
         }
         .form_signin_submit:hover {
             background-color: var.$wm-primary-hover;
         }
     }
+}
 
+//Dark mode
+
+#dark .main_signin {
+    background-color: var.$black100;
+    .signin_section {
+        .section_signin_h1 {
+            color: var.$white100;
+        }
+        .section_signin_p {
+            color: var.$dm-w50;
+        }
+    }
+    .main_form_signin {
+        div {
+            .email_pass_icons {
+                color: var.$dm-w80;
+                background-color: var.$dm-w50;
+            }
+            .form_signin_text {
+                color: var.$dm-w80;
+                background-color: var.$dm-w50;
+            }
+            .form_signin_text::placeholder {
+                color: var.$dm-w80;
+                opacity: 1;
+            }
+            .form_signin_text::-ms-input-placeholder {
+                color: var.$dm-w80;
+            }
+
+        }
+        
+        .form_signin_submit {
+            color: var.$white100;
+            background-color: var.$dm-primary;
+        }
+        .form_signin_submit:hover {
+            background-color: var.$dm-primary-hover;
+        }
+    }
 }

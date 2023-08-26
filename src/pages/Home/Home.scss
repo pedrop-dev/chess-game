@@ -3,8 +3,7 @@
 .home_main {
     min-height: 100vh;
     width: 100%;
-    padding-top: 100px;
-    background-color: var.$white100;
+    padding: 100px 0px;
     .home_main_h1 {
         margin-bottom: 100px;
         text-align: center;
@@ -71,6 +70,70 @@
             img {
                 border-radius: 5px;
             }
+        }
+    }
+}
+
+//Light mode
+
+#light .home_main {
+    background-color: var.$white100;
+    .home_main_h1 {
+        color: var.$black100;
+    }
+    .home_main_section {
+        a {
+            .home_section_online {
+                color: var.$white100;
+                background-color: var.$wm-primary;
+            }
+            .home_section_online:hover {
+                background-color: var.$wm-primary-hover;
+            }
+            .home_section_computer {
+                color: var.$wm-b50;
+                background-color: var.$wm-b10;
+            }
+            .home_section_computer:hover {
+                background-color: var.$wm-b25;
+            }
+        }
+    }
+    .home_second_section {
+        p {
+            color: var.$wm-b50;
+        }
+    }
+}
+
+//Dark mode
+
+#dark .home_main {
+    background-color: var.$black100;
+    .home_main_h1 {
+        color: var.$white100;
+    }
+    .home_main_section {
+        a {
+            .home_section_online {
+                color: var.$white100;
+                background-color: var.$dm-primary;
+            }
+            .home_section_online:hover {
+                background-color: var.$dm-primary-hover;
+            }
+            .home_section_computer {
+                color: var.$dm-w80;
+                background-color: var.$dm-w25;
+            }
+            .home_section_computer:hover {
+                background-color: var.$dm-w50;
+            }
+        }
+    }
+    .home_second_section {
+        p {
+            color: var.$dm-w80;
         }
     }
 }

@@ -18,3 +18,21 @@
         transition: .3s;
     }
 }
+
+//Light mode
+
+#light .create_account_header {
+    background-color: var.$white100;
+    .arrow_left_icon {
+        color: var.$black100;
+    }
+}
+
+//Dark mode
+
+#dark .create_account_header {
+    background-color: var.$black100;
+    .arrow_left_icon {
+        color: var.$white100;
+    }
+}

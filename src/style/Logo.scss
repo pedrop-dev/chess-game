@@ -10,3 +10,22 @@
         color: var.$wm-primary;
     }
 }
+
+//Light mode
+
+#light .logo_wrapper {
+    .pawn_icon {
+        color: var.$wm-primary;
+    }
+}
+
+//Dark mode
+
+#dark .logo_wrapper {
+    .pawn_icon {
+        color: var.$dm-primary;
+    }
+    h2 {
+        color: var.$white100;
+    }
+}

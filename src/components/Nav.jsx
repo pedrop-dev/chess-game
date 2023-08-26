@@ -43,7 +43,7 @@ export default function Nav() {
                 </div>
             </nav>
 
-            {openNav &&
+            {openNav && 
                 <nav className='nav_res_container'>
                     <ul className='nav_horizontal_ul'>
                         <Link to='/'>
@@ -55,7 +55,8 @@ export default function Nav() {
                         </Link>
                         <li><BiWorld className='lang_icon horizontal_icon' /><p>Language</p></li>
                     </ul>
-                </nav>}
+                </nav>
+            }
 
             <header className='header_nav_vertical'>
                 <Logo />

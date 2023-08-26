@@ -1,5 +1,7 @@
 @use './var';
 
+//Horizontal nav
+
 .header_nav_horizontal {
     height: 60px;
     width: 100%;
@@ -67,7 +69,6 @@
 .nav_res_container {
     height: 100vh;
     width: 100%;
-    position: absolute;
     padding-top: 50px;
     background-color: var.$white100;
     .nav_horizontal_ul {
@@ -102,6 +103,101 @@
         }
     }
 }
+
+//Light mode
+
+#light .header_nav_horizontal {
+    background-color: var.$white100;
+    .fixed_header_container {
+        .header_section_nav {
+            .menuh_icon {
+                color: var.$black100;
+            }
+        }
+
+        .header_aside_account {
+            .account_signup {
+                color: var.$wm-b50;
+                background-color: var.$wm-b10;
+            }
+            .account_signup:hover {
+                background-color: var.$wm-b25;
+            }
+            .account_signin {
+                color: var.$white100;
+                background-color: var.$wm-primary;
+            }
+            .account_signin:hover {
+                background-color: var.$wm-primary-hover;
+            }
+        }
+    }
+}
+
+#light .nav_res_container {
+    background-color: var.$white100;
+    .nav_horizontal_ul {
+        a {
+            text-decoration: none;
+        }
+        li {
+            .horizontal_icon {
+                color: var.$wm-b50;
+            }
+            p {
+                color: var.$wm-b50;
+            }
+        }
+    }
+}
+
+//Dark mode
+
+#dark .header_nav_horizontal {
+    background-color: var.$black100;
+    .fixed_header_container {
+        .header_section_nav {
+            .menuh_icon {
+                color: var.$white100;
+            }
+        }
+        .header_aside_account {
+            .account_signup {
+                color: var.$dm-w80;
+                background-color: var.$dm-w25;
+            }
+            .account_signup:hover {
+                background-color: var.$dm-w50;
+            }
+            .account_signin {
+                color: var.$white100;
+                background-color: var.$dm-primary;
+            }
+            .account_signin:hover {
+                background-color: var.$dm-primary-hover;
+            }
+        }
+    }
+}
+
+#dark .nav_res_container {
+    background-color: var.$black100;
+    .nav_horizontal_ul {
+        a {
+            text-decoration: none;
+        }
+        li {
+            .horizontal_icon {
+                color: var.$dm-w50;
+            }
+            p {
+                color: var.$dm-w50;
+            }
+        }
+    }
+}
+
+//Vertical nav
 
 .header_nav_vertical {
     height: 100vh;
@@ -176,6 +272,76 @@
         }
         .account_signin:hover {
             background-color: var.$wm-primary-hover;
+        }
+    }
+}
+
+//Light mode
+
+#light .header_nav_vertical {
+    background-color: var.$wm-b10;
+    .nav_vertical_ul {
+        a {
+            text-decoration: none;
+        }
+        li {
+            .vertical_icon {
+                color: var.$wm-b50;
+            }
+            p {
+                color: var.$wm-b50;
+            }
+        }
+    }
+    .header_aside_account_vertical {
+        .account_signup {
+            color: var.$wm-b50;
+            background-color: var.$wm-b10;
+        }
+        .account_signup:hover {
+            background-color: var.$wm-b25;
+        }
+        .account_signin {
+            color: var.$white100;
+            background-color: var.$wm-primary;
+        }
+        .account_signin:hover {
+            background-color: var.$wm-primary-hover;
+        }
+    }
+}
+
+//Dark mode
+
+#dark .header_nav_vertical {
+    background-color: var.$dm-w5;
+    .nav_vertical_ul {
+        a {
+            text-decoration: none;
+        }
+        li {
+            .vertical_icon {
+                color: var.$dm-w50;
+            }
+            p {
+                color: var.$dm-w50;
+            }
+        }
+    }
+    .header_aside_account_vertical {
+        .account_signup {
+            color: var.$dm-w80;
+            background-color: var.$dm-w25;
+        }
+        .account_signup:hover {
+            background-color: var.$dm-w50;
+        }
+        .account_signin {
+            color: var.$white100;
+            background-color: var.$dm-primary;
+        }
+        .account_signin:hover {
+            background-color: var.$dm-primary-hover;
         }
     }
 }

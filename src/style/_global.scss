@@ -8,6 +8,12 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-body {
+
+#light .background_control {
+    background-color: var.$white100;
+}
+
+
+#dark .background_control {
     background-color: var.$black100;
 }

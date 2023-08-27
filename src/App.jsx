@@ -13,7 +13,7 @@ import Settings from './pages/Settings/Settings'
 export const ThemeContext = createContext(null)
 
 function App() {
-  const [theme, setTheme] = useState("dark")
+  const [theme, setTheme] = useState("light")
 
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"))
@@ -27,7 +27,10 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="/signup" element={<SignUp/>} />
             <Route path="/signin" element={<SignIn/>} />
-            <Route path="/settings" element={<Settings/>} />
+            <Route 
+              path="/settings" 
+              element={<Settings changeTheme={toggleTheme}/>}
+            />
             <Route path="/game-analysis" element={<GameAnalysis/>}/>
             <Route path="/play-bot" element={<PlayBot/>}/>
             <Route path="/play-game" element={<MultiPlayer/>}/>

@@ -1,21 +1,18 @@
 @use '../../style/var';
 
 .settings_main {
-    height: 650px;
+    height: 600px;
     width: 90%;
-    margin: 0px auto;
+    margin: 50px auto;
     padding: 10px;
     border-radius: 5px;
-    background-color: var.$wm-b10;
     h2 {
         display: flex;
         align-items: center;
-        color: var.$wm-b50;
     }
     .settings_main_options {
         margin: 20px 0px 0px 20px;
         li {
-            color: var.$wm-b50;
             font-weight: bold;
             list-style-type: none;
             h3 {
@@ -38,6 +35,22 @@
                 box-shadow: var.$boxs;*/
                 transition: .3s;
                 cursor: pointer;
+            }
+        }
+    }
+}
+
+//Light mode
+
+#light .settings_main {
+    background-color: var.$wm-b10;
+    h2 {
+        color: var.$wm-b50;
+    }
+    .settings_main_options {
+        li {
+            color: var.$wm-b50;
+            .options_theme_button {
                 color: var.$wm-b50;    
             }
             .white_mode:hover {
@@ -50,11 +63,25 @@
     }
 }
 
-@media only screen and (min-width: 1048px) {
-    .settings_main {
-        margin-top: 20px;
-        width: 800px;
-        margin-left: auto;
+//Dark mode
+
+#dark .settings_main {
+    background-color: var.$dm-w10;
+    h2 {
+        color: var.$dm-w50;
     }
-    
+    .settings_main_options {
+        li {
+            color: var.$dm-w50;
+            .options_theme_button {
+                color: var.$dm-w50;    
+            }
+            .white_mode:hover {
+                color: var.$dm-w70;
+            }
+            .dark_mode:hover {
+                color: var.$dm-w70;
+            }
+        }
+    }
 }

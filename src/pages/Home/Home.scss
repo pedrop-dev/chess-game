@@ -8,7 +8,6 @@
         margin-bottom: 100px;
         text-align: center;
         font-size: 35px;
-        color: var.$black100;
     }
     .home_main_section {
         display: flex;
@@ -38,20 +37,6 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            .home_section_online {
-                color: var.$white100;
-                background-color: var.$wm-primary;
-            }
-            .home_section_online:hover {
-                background-color: var.$wm-primary-hover;
-            }
-            .home_section_computer {
-                color: var.$wm-b50;
-                background-color: var.$wm-b10;
-            }
-            .home_section_computer:hover {
-                background-color: var.$wm-b25;
-            }
         }
       
     }
@@ -61,7 +46,6 @@
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            color: var.$wm-b50;
             margin: 50px 0px 10px 0px;
         }
         .home_board {

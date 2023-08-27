@@ -7,10 +7,10 @@
 
 @media screen and (min-width: 769px) and (max-width: 992px) {
     .footer_component {
-        height: 300px;
-        display: flex;
-        justify-content: space-around;
-        padding: 90px 0px 0px 0px;
+        height: 330px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 90px 0px 0px 30%;
     }
 }
 
@@ -19,6 +19,6 @@
         height: 300px;
         display: flex;
         justify-content: space-around;
-        padding: 90px 0px 0px 0px;
+        padding: 90px 0px 0px 15%;
     }
 }

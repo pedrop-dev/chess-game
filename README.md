@@ -65,5 +65,5 @@ For any inquiries, contact us at heitorrdpp@gmail.com or pedroh.ps0102@gmail.com
 
 ## Colaborators
 
-[Pedro Henrique]([www.linkedin.com/in/pedroh-ps](https://www.linkedin.com/in/pedroh-ps/)) <br>
+[Pedro Henrique](https://www.linkedin.com/in/pedroh-ps/) <br>
 [Heitor Prado](https://www.linkedin.com/in/heitor-prado-99767227b/)

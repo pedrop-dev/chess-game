@@ -34,24 +34,26 @@ cd chess-master
 
 **Install frontend dependencies:**
 ```
-cd frontend
 npm install
 ```
 
 **Install backend dependencies:**
 ```
-cd ../backend
-pip install -r requirements.txt
+cd ../api
+pipenv shell
+pipenv install .
+
 ```
 **Run the frontend development server:**
 ```
-npm start
+npm dev
 ```
 **Run the backend server:**
 ```
-flask run
+pipenv shell
+python app.py
 ```
-Access the application in your browser at http://localhost:3000.
+Access the application in your browser at http://localhost:5173.
 
 ## Contributing
 Contributions are welcome! Whether you're an experienced developer or just starting, you can help make this project even better. Fork the repository, create a new branch, and submit your pull requests.

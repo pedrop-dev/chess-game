@@ -1,10 +1,10 @@
 /* eslint-disable no-prototype-builtins */
 import HeaderAccount from '../../components/HeaderAccount'
-import Footer from '../../components/Footer'
 import '../SignIn/SignIn.scss'
 import '../SignIn/SignInResponsivity.scss'
 import {API_BASE_URL} from "../../constants.js"
 import {useState} from "react"
+import Footer from '../../components/Footer'
 
 //Icons
 import { MdEmail, MdLock } from "react-icons/md";
@@ -72,7 +72,7 @@ export default function SignIn() {
                     />
                 </form>
             </main>
-            <Footer/>
+            <Footer />
         </>
     )
 }

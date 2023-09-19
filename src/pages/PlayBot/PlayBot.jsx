@@ -5,6 +5,8 @@ import ChessBoard from "../../components/ChessBoard"
 import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { Chess } from "chess.js"
 import { fenToChessboard, chessBoardToFEN } from "../../helpers/fen";
+import Nav from '../../components/Nav'
+import './PlayBot.scss'
 
 const PlayBot = () => {
   const [stockfish, setStockfish] = useState(null);
@@ -87,12 +89,17 @@ const PlayBot = () => {
 
   }
   return (
-    <div>
-      {invalidMove && "Invalid Move"}
-      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-        <ChessBoard fenPosition={fenPosition} height="60px" width="60px" perspective={"w"}/>
-      </DndContext>
-    </div>
+    <>
+      <Nav />
+      <div className="background_control">
+        <div className="chess_board_container">
+          {invalidMove && "Invalid Move"}
+          <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+            <ChessBoard fenPosition={fenPosition} height="60px" width="60px" perspective={"w"}/>
+          </DndContext>
+        </div>
+      </div>
+    </>
   )
 }
 

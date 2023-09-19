@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import Nav from '../../components/Nav'
-import Footer from '../../components/Footer'
 import './Settings.scss'
 import './SettingsResponsivity.scss'
+import Footer from '../../components/Footer'
 
 //Icons
 import { MdSettings } from "react-icons/md"
@@ -31,8 +31,8 @@ export default function Settings({ changeTheme }) {
             
                 </ul>
             </main>
+            <Footer />
         </div>
-        <Footer />
     </>
     )
 }

@@ -42,13 +42,13 @@ export default function Footer() {
             <section className="footer_section">
                 <h2>Social</h2>
                 <div className="section_icons_wrapper">
-                    <a href="#">
+                    <a href="https://github.com/pedrop-dev/chess-game" target='_blank' rel="noreferrer">
                         <AiFillGithub className='github_icon footer_icons'/>
                     </a>
-                    <a href="#">
+                    <a href="#" target='_blank' rel="noreferrer">
                         <BsLinkedin className='linkedin_icon footer_icons'/>
                     </a>
-                    <a href="#">
+                    <a href="#" target='_blank' rel="noreferrer">
                         <BiLogoDiscord className='discord_icon footer_icons'/>
                     </a>
                 </div>

@@ -1,9 +1,9 @@
 import HeaderAccount from '../../components/HeaderAccount'
-import Footer from '../../components/Footer'
 import '../SignUp/SignUp.scss'
 import '../SignUp/SignUpResponsivity.scss'
 import {API_BASE_URL} from "../../constants.js"
 import { useState } from 'react'
+import Footer from '../../components/Footer'
 
 //Icons
 import { MdEmail, MdLock } from "react-icons/md";
@@ -72,7 +72,7 @@ export default function SignUp() {
                     />
                 </form>
             </main>
-            <Footer/>
+            <Footer />
         </>
     )
 }

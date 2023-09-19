@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-import Footer from '../../components/Footer'
 import Nav from '../../components/Nav'
 import './Home.scss'
 import './HomeResponsivity.scss'
@@ -8,13 +7,13 @@ import io from 'socket.io-client'
 import { API_BASE_URL } from '../../constants.js'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Footer from '../../components/Footer'
 
 //Icons 
 import { FaChessPawn } from "react-icons/fa"
 import { FaRobot } from "react-icons/fa"
 
 const socket = io(API_BASE_URL)
-
 
 export default function Home() {
 
@@ -59,8 +58,8 @@ export default function Home() {
                         </div>
                     </section>
                 </main>
+                <Footer />
             </div>
-            <Footer />
         </>
     )
 }

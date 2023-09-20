@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React,{ useState, createContext } from 'react'
+import React,{ useState, createContext, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import SignUp from './pages/SignUp/SignUp'
@@ -13,11 +13,20 @@ import Settings from './pages/Settings/Settings'
 export const ThemeContext = createContext(null)
 
 function App() {
-  const [theme, setTheme] = useState("light")
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme')
+    return savedTheme || 'light'
+  })
 
   const toggleTheme = () => {
-    setTheme((curr) => (curr === "light" ? "dark" : "light"))
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    setTheme(newTheme)
+    localStorage.setItem('theme', newTheme)
   }
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark-theme', theme === 'dark')
+  }, [theme])
 
   return (
     <ThemeContext.Provider value={{theme, toggleTheme}}>

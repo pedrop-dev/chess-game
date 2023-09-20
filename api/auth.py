@@ -52,7 +52,7 @@ def sign_up():
                                   confirmation_sender=current_app.config['MAIL_USERNAME'],
                                   confirmation_uri=current_app.config["FINALIZE_URI"])
 
-    return 'success', 201
+    return {'result': 'success'}, 201
 
 @bp.route('/api/finalize', methods=["POST"])
 def finalize():

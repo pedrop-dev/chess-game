@@ -4,6 +4,7 @@ sockets = Blueprint('sockets', __name__)
 
 @sockets.route('/room/<int:id>')
 def get_room_info(id: int):
+    print("getting room info")
     return current_app.config['rooms'][id]['players']
 
 from . import rooms

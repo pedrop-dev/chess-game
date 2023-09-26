@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"
 import io from "socket.io-client"
 import { API_BASE_URL } from "../../constants";
 import { useEffect, useState } from "react"
-import ChessBoard from '../../components/ChessBoard' 
+import ChessBoard from '../../components/ChessBoard'
 import { DndContext } from "@dnd-kit/core";
 import { fenToChessboard } from "../../helpers/fen";
 import { useSensor, useSensors, MouseSensor, TouchSensor } from "@dnd-kit/core";
@@ -16,8 +16,9 @@ const socket = io(API_BASE_URL)
 
 const MultiPlayer = () => {
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const socketioRoom = searchParams.get('room');
+  // const searchParams = new URLSearchParams(location.search);
+  // const socketioRoom = searchParams.get('room');
+  const [socketioRoom, setSocketioRoom] = useState(null);
   const username = localStorage.getItem('username');
 
   const mouseSensor = useSensor(MouseSensor); // Initialize mouse sensor
@@ -27,7 +28,6 @@ const MultiPlayer = () => {
   const [fenPosition, setFenPosition] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
   const [invalidMove, setInvalidMove] = useState(null)
   const [game, setGame] = useState(null);
-  const [players, setPlayers] = useState(null);
   const [opponentPlayer, setOpponentPlayer] = useState('');
   const [playerColor, setPlayerColor] = useState(null);
 
@@ -36,29 +36,55 @@ const MultiPlayer = () => {
     setGame(g);
   }, [])
 
+  const getRoomInfo = (sckRoom) => {
+    fetch(`${API_BASE_URL}/room/${sckRoom}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log("getting room info")
+        console.log(data);
+        setOpponentPlayer(data.w === username ? data.b : data.w)
+        if (data.w === username) {
+          setPlayerColor('w');
+        }
+
+        else {
+          setPlayerColor('b');
+        }
+      });
+  }
   useEffect(() => {
     socket.on("new_player", () => {
-      fetch(`${API_BASE_URL}/room/${socketioRoom}`)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          setOpponentPlayer(data.w === username ? data.b : data.w)
-          if (data.w === username) {
-            setPlayerColor('w');
-          }
-
-          else {
-            setPlayerColor('b');
-          }
-        });
+      console.log("NEW PLAYER")
+      console.log("socketioRoom -> " + socketioRoom)
+      getRoomInfo(socketioRoom);
     })
-  }, []);
+
+    return () => {
+      socket.off("new_player");
+    }
+  }, [socketioRoom]);
 
   useEffect(() => {
-    socket.emit("join_room", {room: socketioRoom, username: username})
-  }, [])
+    socket.emit("join_room", { username: username }, (response) => {
+      console.log("inside emit join_room")
+      console.log(response)
+      if (response.success) {
+        setSocketioRoom(response.room);
+      }
+      getRoomInfo(response.room);
+    });
+    console.log('calling join room');
 
-  useEffect(()=> {
+    return () => {
+      socket.emit("leave_room", { username: username, room: socketioRoom });
+    }
+  }, [])
+  useEffect(() => {
+    console.log("socketioroom -> " + socketioRoom);
+  }, [socketioRoom]);
+
+
+  useEffect(() => {
     if (game !== null && game !== undefined) {
       socket.on("opponent_move", (data) => {
         game.move(JSON.parse(data.move))
@@ -84,15 +110,17 @@ const MultiPlayer = () => {
     let col = sq % 8;
 
     try {
-      game.move({from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]), 
-                    to: String.fromCharCode(col + 97) + String(8 - row) })
+      game.move({
+        from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]),
+        to: String.fromCharCode(col + 97) + String(8 - row)
+      })
     }
-    
+
     catch {
       setInvalidMove(true);
       return;
     }
-    
+
     let sqChildrenCopy = fenToChessboard(fenPosition);
     sqChildrenCopy[row][col] = e.active.data.current?.type;
 
@@ -110,8 +138,12 @@ const MultiPlayer = () => {
 
     setFenPosition(game.fen())
     setGame(game);
-    socket.emit("move", {move: {from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]), 
-                    to: String.fromCharCode(col + 97) + String(8 - row) }, room: socketioRoom})
+    socket.emit("move", {
+      move: {
+        from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]),
+        to: String.fromCharCode(col + 97) + String(8 - row)
+      }, room: socketioRoom
+    })
   }
 
   useEffect(() => {
@@ -137,7 +169,7 @@ const MultiPlayer = () => {
         </main>
       </div>
     </>
-    
+
   )
 }
 

@@ -2,7 +2,7 @@ import flask_praetorian
 from flask import Blueprint, request, current_app
 from __init__ import db
 
-guard = flask_praetorian.Praetorian()
+from rooms.rooms import guard
 
 bp = Blueprint('auth', __name__)
 

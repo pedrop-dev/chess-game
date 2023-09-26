@@ -30,6 +30,7 @@ export default function SignIn() {
                 console.log(data);
                 if (data.hasOwnProperty("access_token")) {
                     localStorage.setItem("token", data.access_token);
+                    localStorage.setItem('username', username)
                     alert("Successful login")
                 }
             })

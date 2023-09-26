@@ -23,15 +23,9 @@ export default function Home() {
             console.log('user not logged in');
             return;
         }
-        socket.emit('join_room', { token })
-        console.log("JOINING ROOM")
-    }
 
-    useEffect(() => {
-        socket.on("success_join_room", (data) => {
-            window.location.href = "/play-game?" + new URLSearchParams({ room: data.room });
-        }, [])
-    })
+        window.location.href = "/play-game?" + new URLSearchParams({ room: data.room });
+    }
 
     return (
         <>

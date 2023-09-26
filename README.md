@@ -39,14 +39,14 @@ npm install
 
 **Install backend dependencies:**
 ```
-cd ../api
+cd api
+pipenv install 
 pipenv shell
-pipenv install .
 
 ```
 **Run the frontend development server:**
 ```
-npm dev
+npm run dev
 ```
 **Run the backend server:**
 ```

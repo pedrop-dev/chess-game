@@ -7,6 +7,41 @@
 
 .chess_board_container {
     height: 100vh;
+    .username_container {
+        height: 580px;
+        width: 480px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        .span1 {
+            display: flex;
+            justify-content: end;
+            //text-align: right;
+            p {
+                height: 35px;
+                width: fit-content;
+                padding: 5px 5px 5px 40px;
+                border-radius: 5px 0px 0px 5px;
+                background-color: lightgray;
+            }
+        }
+        .span2 {
+            display: flex;
+            justify-content: start;
+            //text-align: left;
+            p {
+                height: 35px;
+                width: fit-content;
+                padding: 5px 40px 5px 5px;
+                border-radius: 0px 5px 5px 0px;
+                background-color: lightgray;
+            }
+        }
+    }
 }
 
 #dark .background_control {

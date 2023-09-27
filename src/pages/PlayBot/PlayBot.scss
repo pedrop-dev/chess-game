@@ -1,5 +1,15 @@
 @use '../../style/var';
 
+.difficulty_selector_wrapper {
+    display: flex;
+    justify-content: center;
+    div {
+        display: flex;
+        justify-content: space-between;
+        width: 20vw;
+    }
+}
+
 #light .background_control {
     //height: 100vh;
     background-color: var.$white100;

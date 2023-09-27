@@ -5,15 +5,20 @@ import '../SignIn/SignInResponsivity.scss'
 import { API_BASE_URL } from "../../constants.js"
 import { useState } from "react"
 import Footer from '../../components/Footer'
+import { toast } from 'react-toastify'
+import { useContext } from 'react'
 
 //Icons
 import { MdEmail, MdLock } from "react-icons/md";
 import { BsFillPersonFill } from 'react-icons/bs'
+import { ThemeContext } from '../../App'
 
 export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+
+    const { theme } = useContext(ThemeContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,7 +36,16 @@ export default function SignIn() {
                 if (data.hasOwnProperty("access_token")) {
                     localStorage.setItem("token", data.access_token);
                     localStorage.setItem('username', username)
-                    alert("Successful login")
+                    toast.success("Successful Login", {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: theme,
+                    })
                 }
             })
     }

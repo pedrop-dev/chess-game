@@ -4,6 +4,7 @@ import '../SignUp/SignUpResponsivity.scss'
 import { API_BASE_URL } from "../../constants.js"
 import { useState } from 'react'
 import Footer from '../../components/Footer'
+import { toast } from 'react-toastify'
 
 //Icons
 import { MdEmail, MdLock } from "react-icons/md";
@@ -27,7 +28,16 @@ export default function SignUp() {
             .then(res => res.json())
             .then(data => {
                 if (data.hasOwnProperty("result") && data.result === "success") {
-                    alert("User registered, check your email to confirm");
+                    toast.success("User registered, check your email to confirm", {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                 }
             });
     }

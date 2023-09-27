@@ -15,9 +15,6 @@ import Nav from '../../components/Nav'
 const socket = io(API_BASE_URL)
 
 const MultiPlayer = () => {
-  const location = useLocation();
-  // const searchParams = new URLSearchParams(location.search);
-  // const socketioRoom = searchParams.get('room');
   const [socketioRoom, setSocketioRoom] = useState(null);
   const username = localStorage.getItem('username');
 

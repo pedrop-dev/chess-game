@@ -13,6 +13,7 @@ const PlayBot = () => {
   const [fenPosition, setFenPosition] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
   const [invalidMove, setInvalidMove] = useState(false);
   const [game, setGame] = useState(null);
+  const [depth, setDepth] = useState("15")
 
   const mouseSensor = useSensor(MouseSensor); // Initialize mouse sensor
   const touchSensor = useSensor(TouchSensor); // Initialize touch sensor
@@ -25,10 +26,8 @@ const PlayBot = () => {
 
   useEffect(() => {
     var wasmSuppported = typeof WebAssembly === 'object' && WebAssembly.validate(Uint8Array.of(0x0, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00));
-    
+
     var sf = new Worker(wasmSuppported ? 'stockfish.wasm.js' : 'stockfish.js');
-
-
 
     sf.postMessage('uci');
     setStockfish(sf);
@@ -37,7 +36,7 @@ const PlayBot = () => {
 
   useEffect(() => {
     if (stockfish !== null && game !== null) {
-      stockfish.addEventListener('message',  (e) => {
+      stockfish.addEventListener('message', (e) => {
         const response = e?.data;
         if (response.includes('bestmove')) {
           const move = response.split(' ')[1];
@@ -56,17 +55,19 @@ const PlayBot = () => {
     let col = sq % 8;
 
     try {
-      game.move({from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]), 
-                    to: String.fromCharCode(col + 97) + String(8 - row) })
+      game.move({
+        from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]),
+        to: String.fromCharCode(col + 97) + String(8 - row)
+      })
     }
-    
+
     catch {
       setInvalidMove(true);
       return;
     }
 
-    
-    
+
+
     let sqChildrenCopy = fenToChessboard(fenPosition);
     sqChildrenCopy[row][col] = e.active.data.current?.type;
 
@@ -85,17 +86,23 @@ const PlayBot = () => {
     setFenPosition(game.fen())
     setGame(game);
     stockfish.postMessage("position fen " + game.fen());
-    stockfish.postMessage("go depth 15");
-
+    stockfish.postMessage(`go depth ${depth}`);
   }
+
   return (
     <>
       <Nav />
+      <div className="difficulty_selector_wrapper">
+        <div>
+          <div>Select Difficulty: </div>
+          <input type="range" min="5" max="20" className="difficulty_selector" onChange={(e) => setDepth(e.value)} />
+        </div>
+      </div>h
       <div className="background_control">
         <div className="chess_board_container">
           {invalidMove && "Invalid Move"}
           <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-            <ChessBoard fenPosition={fenPosition} height="60px" width="60px" perspective={"w"}/>
+            <ChessBoard fenPosition={fenPosition} height="60px" width="60px" perspective={"w"} />
           </DndContext>
         </div>
       </div>

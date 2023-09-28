@@ -152,7 +152,14 @@ const MultiPlayer = () => {
       <div className="background_control">
         <main className="chess_board_container">
           <h2> {socketioRoom} </h2>
-          <p>{opponentPlayer}</p>
+          <div className="username_container">
+            <span className="span1">
+              <p>{opponentPlayer}</p>
+            </span>
+            <span className="span2">
+              <p>{username}</p>
+            </span>
+          </div>
           <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
             <ChessBoard
               width="60px"
@@ -162,7 +169,7 @@ const MultiPlayer = () => {
               className='chess_board'
             />
           </DndContext>
-          <p>{username}</p>
+          
         </main>
       </div>
     </>

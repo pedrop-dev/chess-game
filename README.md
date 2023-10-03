@@ -44,9 +44,22 @@ pipenv install
 pipenv shell
 
 ```
+**Configure frontend server**
+Write a .env file in the root of the project
+```
+VITE_API_BASE_URL=http://localhost:5000
+```
 **Run the frontend development server:**
 ```
 npm run dev
+```
+**Configure Backend Server**
+Write a .env file with the following content in the api directory
+```
+FRONTEND_DOMAIN=http://localhost:5173
+FLASK_SECRET_KEY=super-secret-key
+MAIL_USERNAME=email-with-app-password-configured@example.com
+MAIL_PASSWORD=16-digit-app-password
 ```
 **Run the backend server:**
 ```

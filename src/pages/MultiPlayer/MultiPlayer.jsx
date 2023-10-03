@@ -3,14 +3,16 @@
 import { useLocation } from "react-router-dom"
 import io from "socket.io-client"
 import { API_BASE_URL } from "../../constants";
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import ChessBoard from '../../components/ChessBoard'
 import { DndContext } from "@dnd-kit/core";
 import { fenToChessboard } from "../../helpers/fen";
 import { useSensor, useSensors, MouseSensor, TouchSensor } from "@dnd-kit/core";
 import { Chess } from "chess.js";
+import { toast } from "react-toastify";
 import './MultiPlayer.scss'
 import Nav from '../../components/Nav'
+import { ThemeContext } from "../../App";
 
 const socket = io(API_BASE_URL)
 
@@ -23,16 +25,14 @@ const MultiPlayer = () => {
   const sensors = useSensors(mouseSensor, touchSensor)
 
   const [fenPosition, setFenPosition] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
-  const [invalidMove, setInvalidMove] = useState(null)
-  const [game, setGame] = useState(null);
+  const [game, setGame] = useState(new Chess(fenPosition));
   const [opponentPlayer, setOpponentPlayer] = useState('');
   const [playerColor, setPlayerColor] = useState(null);
 
-  useEffect(() => {
-    var g = new Chess(fenPosition);
-    setGame(g);
-  }, [])
+  const { theme } = useContext(ThemeContext);
 
+  console.log(fenPosition);
+  console.log(game);
   const getRoomInfo = (sckRoom) => {
     fetch(`${API_BASE_URL}/room/${sckRoom}`)
       .then(res => res.json())
@@ -82,21 +82,51 @@ const MultiPlayer = () => {
 
 
   useEffect(() => {
-    if (game !== null && game !== undefined) {
+    if (game !== null && game !== undefined && playerColor !== null && playerColor !== undefined) {
       socket.on("opponent_move", (data) => {
-        game.move(JSON.parse(data.move))
+        if (data.color !== playerColor) {
+          console.log(data.color)
+          console.log(playerColor);
+
+          game.move(JSON.parse(data.move))
+          if (game.isGameOver()) {
+            if (game.isDraw()) {
+              toast.info("Game ended in draw", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: theme,
+              })
+            } else {
+              toast.error("Sorry you lost the game", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: theme,
+              })
+            }
+          }
+        }
+
         setGame(game);
         setFenPosition(game.fen());
       })
     }
-  }, [game])
+  }, [game, playerColor])
 
   const handleDragEnd = (e) => {
     if (game.turn() != playerColor) {
       console.log("AAAAAA")
       console.log(game.turn())
       console.log(playerColor)
-      setInvalidMove(true);
       return;
     }
 
@@ -114,7 +144,6 @@ const MultiPlayer = () => {
     }
 
     catch {
-      setInvalidMove(true);
       return;
     }
 
@@ -124,18 +153,37 @@ const MultiPlayer = () => {
     sqChildrenCopy[e.active.data.current?.position[0]][e.active.data.current?.position[1]] = null;
 
     if (game.isGameOver()) {
+      if (game.isDraw()) {
+        toast.info("Game ended in draw", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: theme,
+        })
+      }
       if (game.isCheckmate()) {
-        setResult(game.turn() == "w" ? "Black Wins" : "White Wins");
+        toast.success("Congrats, you won the game", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: theme,
+        })
       }
 
-      else if (game.isDraw()) {
-        setResult("Game ended in draw");
-      }
     }
 
     setFenPosition(game.fen())
     setGame(game);
     socket.emit("move", {
+      color: playerColor,
       move: {
         from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]),
         to: String.fromCharCode(col + 97) + String(8 - row)
@@ -146,6 +194,7 @@ const MultiPlayer = () => {
   useEffect(() => {
     console.log(playerColor);
   }, [playerColor])
+
   return (
     <>
       <Nav />
@@ -169,7 +218,7 @@ const MultiPlayer = () => {
               className='chess_board'
             />
           </DndContext>
-          
+
         </main>
       </div>
     </>

@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ChessBoard from "../../components/ChessBoard"
 import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { Chess } from "chess.js"
 import { fenToChessboard, chessBoardToFEN } from "../../helpers/fen";
+import { toast } from "react-toastify";
 import Nav from '../../components/Nav'
 import './PlayBot.scss'
+import { ThemeContext } from "../../App";
 
 const PlayBot = () => {
   const [stockfish, setStockfish] = useState(null);
@@ -18,6 +20,8 @@ const PlayBot = () => {
   const mouseSensor = useSensor(MouseSensor); // Initialize mouse sensor
   const touchSensor = useSensor(TouchSensor); // Initialize touch sensor
   const sensors = useSensors(mouseSensor, touchSensor)
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     var g = new Chess(fenPosition);
@@ -41,6 +45,32 @@ const PlayBot = () => {
         if (response.includes('bestmove')) {
           const move = response.split(' ')[1];
           game.move(move);
+          if (game.isGameOver()) {
+            if (game.isDraw()) {
+              toast.info("Game ended in draw", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: theme,
+              })
+            } else {
+              toast.error("Sorry you lost the game", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: theme,
+              })
+
+            }
+          }
           setFenPosition(game.fen());
         }
       })
@@ -74,13 +104,33 @@ const PlayBot = () => {
     sqChildrenCopy[e.active.data.current?.position[0]][e.active.data.current?.position[1]] = null;
 
     if (game.isGameOver()) {
-      if (game.isCheckmate()) {
-        setResult(game.turn == "w" ? "Black Wins" : "White Wins");
+      alert("Game over")
+      console.log(game.turn())
+      if (game.isDraw()) {
+        toast.info("Game ended in draw", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: theme,
+        })
+      }
+      else {
+        toast.success("Congrats, you won the game", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: theme,
+        })
       }
 
-      else if (game.isDraw()) {
-        setResult("Game ended in draw");
-      }
     }
 
     setFenPosition(game.fen())
@@ -95,7 +145,7 @@ const PlayBot = () => {
       <div className="difficulty_selector_wrapper">
         <div>
           <div>Select Difficulty: </div>
-          <input type="range" min="5" max="20" className="difficulty_selector" onChange={(e) => setDepth(e.value)} />
+          <input type="range" min="1" max="20" className="difficulty_selector" onChange={(e) => setDepth(e.value)} />
         </div>
       </div>h
       <div className="background_control">

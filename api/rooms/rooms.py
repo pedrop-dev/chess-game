@@ -57,4 +57,4 @@ def on_leave(data):
 
 @socketio.on("move")
 def on_move(data):
-    emit('opponent_move', {'move': json.dumps(data['move'])}, room=data['room'])
+    emit('opponent_move', {'color': data['color'], 'move': json.dumps(data['move'])}, room=data['room'])

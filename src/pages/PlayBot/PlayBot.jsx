@@ -96,8 +96,6 @@ const PlayBot = () => {
       return;
     }
 
-
-
     let sqChildrenCopy = fenToChessboard(fenPosition);
     sqChildrenCopy[row][col] = e.active.data.current?.type;
 
@@ -144,13 +142,15 @@ const PlayBot = () => {
       <Nav />
       <div className="difficulty_selector_wrapper">
         <div>
-          <div>Select Difficulty: </div>
+          <p>Select Difficulty</p> 
+
           <input type="range" min="1" max="20" className="difficulty_selector" onChange={(e) => setDepth(e.value)} />
         </div>
-      </div>h
+      </div>
       <div className="background_control">
         <div className="chess_board_container">
-          {invalidMove && "Invalid Move"}
+          {invalidMove && <p>Invalid Move</p>}
+  
           <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
             <ChessBoard fenPosition={fenPosition} height="60px" width="60px" perspective={"w"} />
           </DndContext>

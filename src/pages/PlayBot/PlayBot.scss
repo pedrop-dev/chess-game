@@ -1,25 +1,72 @@
 @use '../../style/var';
 
 .difficulty_selector_wrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
+    padding-top: 15px;
     div {
         display: flex;
+        width: 300px;
         justify-content: space-between;
-        width: 20vw;
+        padding: 10px 5px;
+        border-radius: 5px;
     }
+}
+
+.chess_board_container {
+    height: 100vh;
+    /*p {
+        position: absolute;
+        top: 85%;
+        left: 25%;
+        display: flex;
+        width: 300px;
+        justify-content: center;
+        padding: 10px 5px;
+        border-radius: 5px;
+        font-weight: bold;
+    }*/
 }
 
 #light .background_control {
     //height: 100vh;
     background-color: var.$white100;
+    /*.chess_board_container {
+        p {
+            color: var.$wm-b70;
+            background-color: var.$wm-b10;
+        }
+    }*/
 }
 
-.chess_board_container {
-    height: 100vh;
+#light .difficulty_selector_wrapper {
+    background-color: var.$white100;
+    div {
+        background-color: var.$wm-b10;
+        p {
+            color: var.$wm-b70;
+        }
+    }
 }
 
 #dark .background_control {
     //height: 100vh;
     background-color: var.$black100;
+    /*.chess_board_container {
+        p {
+            background-color: var.$dm-w80;
+            color: var.$wm-b70;
+        }
+    }*/
+}
+
+#dark .difficulty_selector_wrapper {
+    background-color: var.$black100;
+    div {
+        background-color: var.$dm-w80;
+        p {
+            color: var.$wm-b70;
+        }
+    }
 }

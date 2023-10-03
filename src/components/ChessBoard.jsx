@@ -6,7 +6,6 @@ import { chessBoardToFEN, fenToChessboard } from '../helpers/fen';
 import Square from './Square'
 import '../style/ChessBoard.scss'
 
-
 export default function ChessBoard(props) {
   const [chessboardMatrix, setChessboardMatrix] = useState([]);
   const [squareChildren, setSquareChildren] = useState(null);
@@ -85,7 +84,7 @@ export default function ChessBoard(props) {
           let j = 0;
           return <div style={{display: "flex", flexDirection: "row"}}>
              {row.map((sqColor) => {
-              return <Square 
+              return <Square
                 height={props.height}
                 width={props.width}
                 color={sqColor}

@@ -27,6 +27,7 @@
                 padding: 5px 5px 5px 40px;
                 border-radius: 5px 0px 0px 5px;
                 background-color: lightgray;
+                box-shadow: var.$boxs;
             }
         }
         .span2 {
@@ -39,6 +40,7 @@
                 padding: 5px 40px 5px 5px;
                 border-radius: 0px 5px 5px 0px;
                 background-color: lightgray;
+                box-shadow: var.$boxs;
             }
         }
     }

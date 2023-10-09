@@ -1,0 +1,59 @@
+@use '../../style/var';
+
+.testing {
+    height: 100vh;
+    .container_analysis_bt {
+        width: 480px;
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 0px 0px 0px 0px;
+        //background-color: tomato;
+        .analysis-bt {
+            height: 40px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bolder;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+            box-shadow: var.$boxs;
+            transition: .3s;
+        }
+    }
+}
+
+//Light mode
+
+#light .testing {
+    .container_analysis_bt {
+        .analysis-bt {
+            color: var.$white100;
+            background-color: var.$wm-primary;
+        }
+        .analysis-bt:hover {
+            background-color: var.$wm-primary-hover;
+        }
+    }
+}
+
+#dark .testing {
+    .container_analysis_bt {
+        .analysis-bt {
+            color: var.$white100;
+            background-color: var.$dm-primary;
+        }
+        .analysis-bt:hover {
+            background-color: var.$dm-primary-hover;
+        }
+    }
+}

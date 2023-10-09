@@ -5,6 +5,7 @@ import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from "@dn
 import { useState, useEffect, useCallback } from "react"
 import { Chess } from 'chess.js'
 import { chessBoardToFEN, fenToChessboard } from '../../helpers/fen.js'
+import './GameAnalysis.scss'
 
 
 export default function GameAnalysis(props) {
@@ -147,43 +148,43 @@ export default function GameAnalysis(props) {
   })
 
   return (
-    <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-      {invalidMove && <p> Invalid Move </p>}
-      {result && result}
-      <ChessBoard height='60px' width='60px' fenPosition={chessboardFen} perspective={"b"}/>
+    <div className="background_control testing">
+      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+        {invalidMove && <p> Invalid Move </p>}
+        {result && result}
+        <ChessBoard height='60px' width='60px' fenPosition={chessboardFen} perspective={"b"}/>
 
-      <Piece type="p" id={65}/>
-      <Piece type="n" id={66}/>
-      <Piece type="k" id={67}/>
-      <Piece type="q" id={68}/>
-      <Piece type="b" id={69}/>
+        <Piece type="p" id={65}/>
+        <Piece type="n" id={66}/>
+        <Piece type="k" id={67}/>
+        <Piece type="q" id={68}/>
+        <Piece type="b" id={69}/>
 
-      <Piece type="P" id={70}/>
-      <Piece type="N" id={71}/>
-      <Piece type="K" id={72}/>
-      <Piece type="Q" id={73}/>
-      <Piece type="B" id={74}/>
+        <Piece type="P" id={70}/>
+        <Piece type="N" id={71}/>
+        <Piece type="K" id={72}/>
+        <Piece type="Q" id={73}/>
+        <Piece type="B" id={74}/>
 
-      <button onClick={handleEngineEval}>
-        Evaluate Position
-      </button>
-
-      {engineEval && engineEval}
-
-      <button onClick={handleAnalyzeGame}>
-        Analyze Game
-      </button>
-
-      <button onClick={handleGameFromHere}>
-        Game From Here
-      </button>
-
-      <button onClick={() => {
-        setChessboardFen('8/8/8/8/8/8/8/8 w KQkq - 0 1');
-        setIsGame(false);
-      }}>
-        Empty Board
-      </button>
-    </DndContext>
+        <div className="container_analysis_bt">
+          <button onClick={handleEngineEval} className="analysis-bt">
+            Evaluate Position
+          </button>
+          {engineEval && engineEval}
+          <button onClick={handleAnalyzeGame} className="analysis-bt">
+            Analyze Game
+          </button>
+          <button onClick={handleGameFromHere} className="analysis-bt">
+            Game From Here
+          </button>
+          <button onClick={() => {
+            setChessboardFen('8/8/8/8/8/8/8/8 w KQkq - 0 1');
+            setIsGame(false);
+          }} className="analysis-bt">
+            Empty Board
+          </button>
+        </div>
+      </DndContext>
+    </div>
   )
 }

@@ -200,7 +200,6 @@ const MultiPlayer = () => {
       <Nav />
       <div className="background_control">
         <main className="chess_board_container">
-          <h2> {socketioRoom} </h2>
           <div className="username_container">
             <span className="span1">
               <p>{opponentPlayer}</p>

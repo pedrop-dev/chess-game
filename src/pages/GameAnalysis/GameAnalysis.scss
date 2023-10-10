@@ -13,6 +13,12 @@
         gap: 10px;
         padding: 0px 0px 0px 0px;
         //background-color: tomato;
+        .p_engine_eval {
+            position: absolute;
+            top: 95%;
+            left: 50%;
+            transform: translate(-50%, 10%);
+        }
         .analysis-bt {
             height: 40px;
             width: 100%;
@@ -36,6 +42,9 @@
 
 #light .testing {
     .container_analysis_bt {
+        .p_engine_eval {
+            color: black;
+        }
         .analysis-bt {
             color: var.$white100;
             background-color: var.$wm-primary;
@@ -48,6 +57,9 @@
 
 #dark .testing {
     .container_analysis_bt {
+        .p_engine_eval {
+            color: var.$white100;
+        }
         .analysis-bt {
             color: var.$white100;
             background-color: var.$dm-primary;

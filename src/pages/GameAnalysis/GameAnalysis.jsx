@@ -170,7 +170,7 @@ export default function GameAnalysis(props) {
           <button onClick={handleEngineEval} className="analysis-bt">
             Evaluate Position
           </button>
-          {engineEval && engineEval}
+          <p className="p_engine_eval">{engineEval && engineEval}</p>
           <button onClick={handleAnalyzeGame} className="analysis-bt">
             Analyze Game
           </button>

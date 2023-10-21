@@ -2,7 +2,10 @@
 
 This is an online chess game project built with JavaScript, React, Sass, Python, and Flask. This project allows users to play chess against AI-powered bots or challenge other players online. It features a sleek dark mode UI, user authentication with login and registration, and even includes a game analysis feature to review and learn from your matches.
 
+![Captura de tela 2023-10-15 194702](https://github.com/pedrop-dev/chess-game/assets/92335472/c5ee4f16-2df0-49ca-933a-2d8957f5bfab)
+
 ## Features
+
 
 + **Dark Mode:** Enjoy a visually pleasing and comfortable gaming experience with the dark mode feature, reducing eye strain during long gameplay sessions.
 

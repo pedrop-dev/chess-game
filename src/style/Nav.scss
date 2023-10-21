@@ -67,7 +67,7 @@
 }
 
 .nav_res_container {
-    height: 100vh;
+    height: 220vh;
     width: 100%;
     padding-top: 50px;
     background-color: var.$white100;
@@ -81,7 +81,14 @@
         align-items: center;
         gap: 150px;
         a {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
+        }
+        .game-analysis-width {
+            width: 170px;
         }
         li {
             width: 120px;
@@ -92,6 +99,7 @@
             list-style: none;
             cursor: pointer;
             //background-color: tomato;
+            
             .horizontal_icon {
                 font-size: 1.5em;
                 color: var.$wm-b50;

@@ -10,6 +10,7 @@ import { AiOutlineMenu, AiFillHome } from "react-icons/ai";
 import { FaUser } from "react-icons/fa"
 import { MdSettings } from "react-icons/md"
 import { BiWorld } from "react-icons/bi"
+import { SiGoogleanalytics } from "react-icons/si"
 
 export default function Nav() {
 
@@ -49,11 +50,18 @@ export default function Nav() {
                         <Link to='/'>
                             <li><AiFillHome className='home_icon horizontal_icon' /><p>Home</p></li>
                         </Link>
+
                         <li><FaUser className='user_icon horizontal_icon' /><p>Account</p></li>
+
                         <Link to='/settings'>
                             <li><MdSettings className='sett_icon horizontal_icon' /><p>Settings</p></li>
                         </Link>
+
                         <li><BiWorld className='lang_icon horizontal_icon' /><p>Language</p></li>
+
+                        <Link to='/game-analysis' >
+                            <li className='game-analysis-width'><SiGoogleanalytics className='sett_icon horizontal_icon' /><p>Game analysis</p></li>
+                        </Link>
                     </ul>
                 </nav>
             }
@@ -70,6 +78,10 @@ export default function Nav() {
                         <li><MdSettings className='sett_icon vertical_icon' /><p>Settings</p></li>
                     </Link>
                     <li><BiWorld className='lang_icon vertical_icon' /><p>Language</p></li>
+
+                    <Link to='/game-analysis'>
+                        <li><SiGoogleanalytics className='sett_icon vertical_icon' /><p>Game analysis</p></li>
+                    </Link>
                 </ul>
 
                 <aside className="header_aside_account_vertical">

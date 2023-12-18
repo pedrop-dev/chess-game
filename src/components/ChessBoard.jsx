@@ -12,7 +12,7 @@ export default function ChessBoard(props) {
   const [invert, setInvert] = useState(false);
   const [persp, setPersp] = useState(null);
 
-  const {fenPosition, perspective} = props;
+  const { fenPosition, perspective } = props;
 
   useEffect(() => {
     if (perspective === "w") {
@@ -35,7 +35,7 @@ export default function ChessBoard(props) {
       chessboard_matrix[i] = Array(8);
       sqC[i] = Array(8);
       for (let j = 0; j < 8; ++j) {
-        chessboard_matrix[i][j] = (i+j+persp) % 2;
+        chessboard_matrix[i][j] = (i + j + persp) % 2;
         sqC[i][j] = null;
       }
     }
@@ -60,16 +60,17 @@ export default function ChessBoard(props) {
         {chessboardMatrix.map((row) => {
           i++;
           let j = 0;
-          return <div style={{display: "flex", flexDirection: "row"}}>
-             {row.map((sqColor) => {
-              return <Square 
+          return <div style={{ display: "flex", flexDirection: "row" }}>
+            {row.map((sqColor) => {
+              return <Square
                 height={props.height}
                 width={props.width}
                 color={sqColor}
-                id={8*i + (j)}
+                id={8 * i + (j)}
                 rank={i}
                 file={j}
-                child={squareChildren[i][j++]}/>})} 
+                child={squareChildren[i][j++]} />
+            })}
           </div>
         })}
       </div>
@@ -82,16 +83,17 @@ export default function ChessBoard(props) {
         {chessboardMatrix.map((row) => {
           i++;
           let j = 0;
-          return <div style={{display: "flex", flexDirection: "row"}}>
-             {row.map((sqColor) => {
+          return <div style={{ display: "flex", flexDirection: "row" }}>
+            {row.map((sqColor) => {
               return <Square
                 height={props.height}
                 width={props.width}
                 color={sqColor}
-                id={8*(7-i) + (7-j)}
-                rank={7-i}
-                file={7-j}
-                child={squareChildren[7-i][7-j++]}/>})} 
+                id={8 * (7 - i) + (7 - j)}
+                rank={7 - i}
+                file={7 - j}
+                child={squareChildren[7 - i][7 - j++]} />
+            })}
           </div>
         })}
       </div>

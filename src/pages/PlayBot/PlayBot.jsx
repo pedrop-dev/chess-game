@@ -13,7 +13,6 @@ import { ThemeContext } from "../../App";
 const PlayBot = () => {
   const [stockfish, setStockfish] = useState(null);
   const [fenPosition, setFenPosition] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
-  const [invalidMove, setInvalidMove] = useState(false);
   const [game, setGame] = useState(null);
   const [depth, setDepth] = useState("15")
 
@@ -92,7 +91,16 @@ const PlayBot = () => {
     }
 
     catch {
-      setInvalidMove(true);
+      toast.error("Invalid Move", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: theme
+      })
       return;
     }
 
@@ -102,7 +110,6 @@ const PlayBot = () => {
     sqChildrenCopy[e.active.data.current?.position[0]][e.active.data.current?.position[1]] = null;
 
     if (game.isGameOver()) {
-      alert("Game over")
       console.log(game.turn())
       if (game.isDraw()) {
         toast.info("Game ended in draw", {
@@ -142,15 +149,14 @@ const PlayBot = () => {
       <Nav />
       <div className="difficulty_selector_wrapper">
         <div>
-          <p>Select Difficulty</p> 
+          <p>Select Difficulty</p>
 
-          <input type="range" min="1" max="20" className="difficulty_selector" onChange={(e) => setDepth(e.value)} />
+          <input type="range" min="0" max="20" className="difficulty_selector" onChange={(e) => setDepth(e.value)} />
         </div>
       </div>
       <div className="background_control">
         <div className="chess_board_container">
-          {invalidMove && <p>Invalid Move</p>}
-  
+
           <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
             <ChessBoard fenPosition={fenPosition} height="60px" width="60px" perspective={"w"} />
           </DndContext>

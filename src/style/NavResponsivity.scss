@@ -22,3 +22,11 @@
         width: 15%;
     }
 }
+
+@media screen and (max-width: 400px) {
+    .header_aside_account {
+        flex-direction: column;
+        display: flex;
+        margin-top: 0.5rem;
+    }
+}

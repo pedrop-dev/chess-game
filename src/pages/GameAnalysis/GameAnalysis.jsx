@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 import ChessBoard from "../../components/ChessBoard"
 import Piece from "../../components/Piece";
+import Nav from '../../components/Nav'
 import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { useState, useEffect, useCallback } from "react"
 import { Chess } from 'chess.js'
 import { chessBoardToFEN, fenToChessboard } from '../../helpers/fen.js'
+import { toast } from 'react-toastify'
 import './GameAnalysis.scss'
 
 
@@ -37,7 +39,7 @@ export default function GameAnalysis(props) {
 
     var sf = new Worker(wasmSupported ? 'stockfish.wasm.js' : 'stockfish.js');
 
-    sf.addEventListener('message', function (e) {
+    sf.addEventListener('message', function(e) {
       console.log(e.data);
       const cpEval = e.data.match(/score cp (-?\d+)/);
       const mate = e.data.match(/score mate (-?\d+)/);
@@ -45,7 +47,7 @@ export default function GameAnalysis(props) {
       console.log(cpEval);
       console.log(mate);
       if (cpEval) {
-        setEngineEval(parseInt(cpEval[1])/1000);
+        setEngineEval(parseInt(cpEval[1]) / 1000);
       }
 
       else if (mate) {
@@ -68,8 +70,10 @@ export default function GameAnalysis(props) {
 
     if (isGame) {
       try {
-        chess.move({from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]), 
-                    to: String.fromCharCode(col + 97) + String(8 - row) })
+        chess.move({
+          from: String.fromCharCode(e.active.data.current?.position[1] + 97) + String(8 - e.active.data.current?.position[0]),
+          to: String.fromCharCode(col + 97) + String(8 - row)
+        })
       }
       catch {
         setInvalidMove(true);
@@ -88,7 +92,6 @@ export default function GameAnalysis(props) {
         if (chess.isCheckmate()) {
           setResult(chess.turn == "w" ? "Black Wins" : "White Wins");
         }
-
         else if (chess.isDraw()) {
           setResult("Game ended in draw");
         }
@@ -126,7 +129,7 @@ export default function GameAnalysis(props) {
         if (piece && chessLibBoard[i][j].color === "w") {
           piece = piece.toUpperCase()
         }
-      
+
         squareChildrenCopy[i][j] = piece;
         console.log(chessLibBoard[i][j]);
 
@@ -147,44 +150,65 @@ export default function GameAnalysis(props) {
     console.log(fenToChessboard(chessboardFen));
   })
 
+  useEffect(() => {
+    if (invalidMove) {
+      toast.error("Invalid Move!");
+    }
+  }, [invalidMove])
+
+
+  useEffect(() => {
+    if (result) {
+      toast.info(result);
+    }
+  }, [result])
+
   return (
     <div className="background_control testing">
-      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-        {invalidMove && <p> Invalid Move </p>}
-        {result && result}
-        <ChessBoard height='60px' width='60px' fenPosition={chessboardFen} perspective={"b"}/>
+      <Nav />
+      <div className="container_content">
+        <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
 
-        <Piece type="p" id={65}/>
-        <Piece type="n" id={66}/>
-        <Piece type="k" id={67}/>
-        <Piece type="q" id={68}/>
-        <Piece type="b" id={69}/>
+          <ChessBoard height='60px' width='60px' fenPosition={chessboardFen} perspective={"b"} />
 
-        <Piece type="P" id={70}/>
-        <Piece type="N" id={71}/>
-        <Piece type="K" id={72}/>
-        <Piece type="Q" id={73}/>
-        <Piece type="B" id={74}/>
+          <div className="pieces_analysis">
+            <div className="pieces_analysis_container">
+              <Piece type="p" id={65} />
+              <Piece type="n" id={66} />
+              <Piece type="k" id={67} />
+              <Piece type="q" id={68} />
+              <Piece type="b" id={69} />
 
-        <div className="container_analysis_bt">
-          <button onClick={handleEngineEval} className="analysis-bt">
-            Evaluate Position
-          </button>
-          <p className="p_engine_eval">{engineEval && engineEval}</p>
-          <button onClick={handleAnalyzeGame} className="analysis-bt">
-            Analyze Game
-          </button>
-          <button onClick={handleGameFromHere} className="analysis-bt">
-            Game From Here
-          </button>
-          <button onClick={() => {
-            setChessboardFen('8/8/8/8/8/8/8/8 w KQkq - 0 1');
-            setIsGame(false);
-          }} className="analysis-bt">
-            Empty Board
-          </button>
-        </div>
-      </DndContext>
+              <Piece type="P" id={70} />
+              <Piece type="N" id={71} />
+              <Piece type="K" id={72} />
+              <Piece type="Q" id={73} />
+              <Piece type="B" id={74} />
+
+            </div>
+          </div>
+
+          <div className="container_analysis_bt">
+            <button onClick={handleEngineEval} className="analysis-bt">
+              Evaluate Position
+            </button>
+            <p className="p_engine_eval">{engineEval && engineEval}</p>
+            <button onClick={handleAnalyzeGame} className="analysis-bt">
+              Analyze Game
+            </button>
+            <button onClick={handleGameFromHere} className="analysis-bt">
+              Game From Here
+            </button>
+            <button onClick={() => {
+              setChessboardFen('8/8/8/8/8/8/8/8 w KQkq - 0 1');
+              setIsGame(false);
+            }} className="analysis-bt">
+              Empty Board
+            </button>
+          </div>
+        </DndContext>
+
+      </div>
     </div>
   )
 }

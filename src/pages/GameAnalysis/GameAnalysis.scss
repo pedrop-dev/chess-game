@@ -1,9 +1,9 @@
 @use '../../style/var';
 
 .testing {
-    height: 100vh;
+    min-height: 105vh;
     .container_analysis_bt {
-        width: 480px;
+        width: 30%;
         position: absolute;
         top: 90%;
         left: 50%;
@@ -11,17 +11,18 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
-        padding: 0px 0px 0px 0px;
+        padding: 10px;
         //background-color: tomato;
         .p_engine_eval {
             position: absolute;
-            top: 95%;
+            top: 100%;
             left: 50%;
             transform: translate(-50%, 10%);
         }
         .analysis-bt {
-            height: 40px;
+            height: 100%;
             width: 100%;
+            padding: 10px;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -66,6 +67,44 @@
         }
         .analysis-bt:hover {
             background-color: var.$dm-primary-hover;
+        }
+    }
+}
+
+.pieces_analysis {
+    display: flex;
+    .pieces_analysis_container {
+        margin-inline: auto;
+        margin-top: 15px;
+    }
+}
+
+
+@media screen and (max-width: 1440px) {
+    .container_content {
+        margin-left: 15%;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .chessboard {
+        left: 55%;
+    }
+}
+@media screen and (max-width: 770px) {
+    .pieces_analysis {
+        margin-top: 15px;
+    }
+    
+    .container_content {
+        margin: 0;
+    }
+    .chessboard {
+        left: 50%;
+    }
+    .testing {
+        .container_analysis_bt {
+            width: 90%;
         }
     }
 }

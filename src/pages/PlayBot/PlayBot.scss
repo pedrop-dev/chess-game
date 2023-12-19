@@ -1,43 +1,32 @@
 @use '../../style/var';
 
-.difficulty_selector_wrapper {
-    width: 100%;
+.play_bot {
     display: flex;
-    justify-content: center;
-    padding-top: 15px;
-    div {
-        display: flex;
-        width: 300px;
-        justify-content: space-between;
-        padding: 10px 5px;
-        border-radius: 5px;
-    }
-}
+    flex-direction: column;
+    margin-left: 15%;
+    min-height: 100vh;
 
-.chess_board_container {
-    //height: 100vh;
-    /*p {
-        position: absolute;
-        top: 85%;
-        left: 25%;
-        display: flex;
-        width: 300px;
-        justify-content: center;
-        padding: 10px 5px;
-        border-radius: 5px;
-        font-weight: bold;
-    }*/
+    .chessboard {
+        margin: auto;
+    }
+    
+    .difficulty_selector_wrapper {
+        width: 360px;
+        margin-inline: auto;
+        padding-top: 15px;
+        div {
+            display: flex;
+            width: 360px;
+            justify-content: space-between;
+            padding: 10px 5px;
+            border-radius: 5px;
+        }
+    }
+    
 }
 
 #light .background_control {
-    //height: 100vh;
     background-color: var.$white100;
-    /*.chess_board_container {
-        p {
-            color: var.$wm-b70;
-            background-color: var.$wm-b10;
-        }
-    }*/
 }
 
 #light .difficulty_selector_wrapper {
@@ -51,14 +40,7 @@
 }
 
 #dark .background_control {
-    //height: 100vh;
     background-color: var.$black100;
-    /*.chess_board_container {
-        p {
-            background-color: var.$dm-w80;
-            color: var.$wm-b70;
-        }
-    }*/
 }
 
 #dark .difficulty_selector_wrapper {

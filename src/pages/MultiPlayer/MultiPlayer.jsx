@@ -204,19 +204,20 @@ const MultiPlayer = () => {
             <span className="span1">
               <p>{opponentPlayer}</p>
             </span>
+            <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+              <ChessBoard
+                width="60px"
+                height="60px"
+                fenPosition={fenPosition}
+                perspective={playerColor}
+                className='chess_board'
+              />
+            </DndContext>
+
             <span className="span2">
               <p>{username}</p>
             </span>
           </div>
-          <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-            <ChessBoard
-              width="60px"
-              height="60px"
-              fenPosition={fenPosition}
-              perspective={playerColor}
-              className='chess_board'
-            />
-          </DndContext>
 
         </main>
       </div>

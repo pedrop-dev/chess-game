@@ -145,24 +145,22 @@ const PlayBot = () => {
   }
 
   return (
-    <>
-      <Nav />
-      <div className="difficulty_selector_wrapper">
-        <div>
-          <p>Select Difficulty</p>
+    <div className="background_control">
+      <div className="play_bot">
+        <Nav />
+        <div className="difficulty_selector_wrapper">
+          <div>
+            <p>Select Difficulty</p>
 
-          <input type="range" min="0" max="20" className="difficulty_selector" onChange={(e) => setDepth(e.value)} />
+            <input type="range" min="0" max="20" className="difficulty_selector" onChange={(e) => setDepth(e.value)} />
+          </div>
         </div>
-      </div>
-      <div className="background_control">
-        <div className="chess_board_container">
 
-          <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-            <ChessBoard fenPosition={fenPosition} height="60px" width="60px" perspective={"w"} />
-          </DndContext>
-        </div>
+        <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+          <ChessBoard fenPosition={fenPosition} height="60px" width="60px" perspective={"w"} />
+        </DndContext>
       </div>
-    </>
+    </div>
   )
 }
 

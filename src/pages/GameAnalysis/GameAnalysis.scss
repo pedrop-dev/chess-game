@@ -1,24 +1,25 @@
 @use '../../style/var';
 
+.container_content {
+    margin-left: 15%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .testing {
     min-height: 105vh;
+        .p_engine_eval {
+            margin: auto;
+        }
     .container_analysis_bt {
         width: 30%;
-        position: absolute;
-        top: 90%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
         padding: 10px;
+        margin: auto;
         //background-color: tomato;
-        .p_engine_eval {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translate(-50%, 10%);
-        }
         .analysis-bt {
             height: 100%;
             width: 100%;
@@ -73,6 +74,7 @@
 
 .pieces_analysis {
     display: flex;
+    z-index: 0;
     .pieces_analysis_container {
         margin-inline: auto;
         margin-top: 15px;
@@ -80,31 +82,19 @@
 }
 
 
-@media screen and (max-width: 1440px) {
+
+@media screen and (max-width: 992px) {
     .container_content {
-        margin-left: 15%;
+        margin-left: 20%;
     }
 }
 
-@media screen and (max-width: 880px) {
-    .chessboard {
-        left: 55%;
-    }
-}
-@media screen and (max-width: 770px) {
-    .pieces_analysis {
-        margin-top: 15px;
-    }
-    
+@media screen and (max-width: 768px) {
     .container_content {
         margin: 0;
-    }
-    .chessboard {
-        left: 50%;
-    }
-    .testing {
         .container_analysis_bt {
-            width: 90%;
+            width: 100%;
         }
     }
+    
 }

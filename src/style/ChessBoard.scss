@@ -1,15 +1,9 @@
 .chessboard {
-    position: absolute;
-    top: 55%;
-    left: 55%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-}
-
-@media screen and (max-width: 780px) {
-    .chessboard {
-        left: 50%;
-    }
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
 }
 
 @media screen and (max-width: 628px) {

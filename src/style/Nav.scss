@@ -67,8 +67,9 @@
 }
 
 .nav_res_container {
-    height: 220vh;
+    height: 100vh;
     width: 100%;
+    z-index: 1000;
     padding-top: 50px;
     background-color: var.$white100;
     position: absolute;

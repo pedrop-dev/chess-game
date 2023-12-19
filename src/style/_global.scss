@@ -16,3 +16,8 @@
 #dark .background_control {
     background-color: var.$black100;
 }
+
+.background_control {
+    min-height: 100vh;
+    z-index: 0;
+}

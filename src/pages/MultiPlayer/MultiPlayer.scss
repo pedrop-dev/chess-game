@@ -6,17 +6,17 @@
 }
 
 .chess_board_container {
-    height: 100vh;
+    height: 100%;
+    display: flex;
+    margin-left: 15%;
     .username_container {
         height: 580px;
         width: 480px;
+        margin: auto;
+        margin-top: 10%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        position: absolute;
-        top: 55%;
-        left: 55%;
-        transform: translate(-50%, -50%);
         z-index: 1;
         .span1 {
             display: flex;
@@ -52,13 +52,9 @@
     background-color: var.$black100;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 992px) {
     .chess_board_container {
-        
-        .username_container {
-            left: 50%;
-            
-        }
+        margin-left: 20%;
     }
 }
 

@@ -169,7 +169,6 @@ export default function GameAnalysis(props) {
       <div className="container_content">
         <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
 
-          <ChessBoard height='60px' width='60px' fenPosition={chessboardFen} perspective={"b"} />
 
           <div className="pieces_analysis">
             <div className="pieces_analysis_container">
@@ -187,26 +186,27 @@ export default function GameAnalysis(props) {
 
             </div>
           </div>
-
-          <div className="container_analysis_bt">
-            <button onClick={handleEngineEval} className="analysis-bt">
-              Evaluate Position
-            </button>
-            <p className="p_engine_eval">{engineEval && engineEval}</p>
-            <button onClick={handleAnalyzeGame} className="analysis-bt">
-              Analyze Game
-            </button>
-            <button onClick={handleGameFromHere} className="analysis-bt">
-              Game From Here
-            </button>
-            <button onClick={() => {
-              setChessboardFen('8/8/8/8/8/8/8/8 w KQkq - 0 1');
-              setIsGame(false);
-            }} className="analysis-bt">
-              Empty Board
-            </button>
-          </div>
+          <ChessBoard height='60px' width='60px' fenPosition={chessboardFen} perspective={"b"} />
         </DndContext>
+
+        <div className="container_analysis_bt">
+          <button onClick={handleEngineEval} className="analysis-bt">
+            Evaluate Position
+          </button>
+          <button onClick={handleAnalyzeGame} className="analysis-bt">
+            Analyze Game
+          </button>
+          <button onClick={handleGameFromHere} className="analysis-bt">
+            Game From Here
+          </button>
+          <button onClick={() => {
+            setChessboardFen('8/8/8/8/8/8/8/8 w KQkq - 0 1');
+            setIsGame(false);
+          }} className="analysis-bt">
+            Empty Board
+          </button>
+        </div>
+        <p className="p_engine_eval">{engineEval && engineEval}</p>
 
       </div>
     </div>

@@ -27,12 +27,12 @@ This is an online chess game project built with JavaScript, React, Sass, Python,
 
 **Clone the repository:**
 ```
-git clone https://github.com/your-username/chess-master.git
+git clone https://github.com/pedrop-dev/chess-game.git
 ```
 
 **Navigate to the project directory:**
 ```
-cd chess-master
+cd chess-game
 ```
 
 **Install frontend dependencies:**

@@ -85,9 +85,6 @@ const MultiPlayer = () => {
     if (game !== null && game !== undefined && playerColor !== null && playerColor !== undefined) {
       socket.on("opponent_move", (data) => {
         if (data.color !== playerColor) {
-          console.log(data.color)
-          console.log(playerColor);
-
           game.move(JSON.parse(data.move))
           if (game.isGameOver()) {
             if (game.isDraw()) {

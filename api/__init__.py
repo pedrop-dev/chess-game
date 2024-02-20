@@ -1,3 +1,4 @@
+from auth import guard
 from flask import Flask
 from dotenv import load_dotenv
 import os
@@ -7,7 +8,6 @@ from flask_mail import Mail
 
 db = SQLAlchemy()
 
-from auth import guard
 
 load_dotenv()
 
@@ -23,7 +23,7 @@ def create_app():
 
     socketio.init_app(app)
 
-    import models 
+    import models
 
     app.config.from_mapping(
         SECRET_KEY=os.getenv('FLASK_SECRET_KEY'),
@@ -35,15 +35,15 @@ def create_app():
         MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD'),
         MAIL_USE_TLS=True,
         MAIL_USE_SSL=False,
-        FINALIZE_URI=os.environ.get("FRONTEND_DOMAIN") + '/confirm-registration' #type: ignore
+        FINALIZE_URI=os.environ.get(
+            "FRONTEND_DOMAIN") + '/confirm-registration'  # type: ignore
     )
 
-    mail = Mail(app)
+    mail = Mail(app)  # type: ignore
 
     guard.init_app(app, models.User)
 
     db.init_app(app)
-
 
     from flask_cors import CORS
 

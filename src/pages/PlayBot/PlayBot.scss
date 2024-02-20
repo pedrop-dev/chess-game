@@ -3,7 +3,7 @@
 .play_bot {
     display: flex;
     flex-direction: column;
-    margin-left: 15%;
+    margin-left: 20%;
     min-height: 100vh;
 
     .chessboard {
@@ -51,4 +51,10 @@
             color: var.$wm-b70;
         }
     }
+}
+
+@media screen and (max-width: 768px) {
+ .play_bot {
+     margin-left: 0;
+ }
 }

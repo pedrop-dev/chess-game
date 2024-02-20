@@ -11,6 +11,7 @@ python-dotenv = "*"
 flask-mail = "*"
 flask-praetorian = "*"
 flask-cors = "*"
+eventlet = "*"
 
 [dev-packages]
 
